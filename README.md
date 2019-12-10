@@ -1,2 +1,2 @@
-# Spotfiy
+# Spotify
 Spotify clone
