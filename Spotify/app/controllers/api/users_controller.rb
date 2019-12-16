@@ -1,0 +1,46 @@
+class Api::UsersController < ApplicationController
+  def create
+    @user = User.new(user_params)
+    if @user.save
+      login!(@user)
+      render :show
+    else
+      render json: @user.errors.full_messages, status: 401
+    end
+  end
+
+  def update
+    
+    #implement later
+
+  end
+
+  def show
+    @user = selected_user
+  end
+
+  def index
+    @users = User.all
+  end
+
+  def destroy
+    @user = selected_user
+    if @user
+      @user.destroy
+      render :show
+    else
+      render ['User does not exist']
+    end
+  end
+
+  private
+
+  def selected_user
+    User.find(params[:id])
+  end
+
+  def user_params
+    params.require(:user).permit(:username, :email, :password)
+  end
+
+end
