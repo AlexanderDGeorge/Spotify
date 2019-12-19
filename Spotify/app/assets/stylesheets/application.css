@@ -13,3 +13,177 @@
  *= require_tree .
  *= require_self
  */
+
+  * {
+    font-family: sans-serif;
+    margin: 0;
+  }
+
+  svg {
+    height: inherit;
+    max-width: 200px;
+    color: black;
+  }
+
+  .divider {
+    border-top: 1px solid #dfe0e6;
+    padding: 15px;
+    width: 500px;
+  }
+
+
+/* top-bar */
+
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    top: 0;
+    background-color: rgba(155, 155, 155, 0.5);
+  }
+
+  .top-bar svg {
+    color: white;
+    height: inherit;
+    width: inherit;
+  }
+
+  .top-bar path {
+    fill: black;
+  }
+
+  .nav-button {
+    width: 25%;
+    display: inline-flex;
+    justify-content: space-evenly;
+    align-items: flex-end;
+  }
+
+  .nav-button a{
+    color: black;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  .nav-button a:hover {
+    color: #1ed760;
+  }
+
+/* session forms */
+
+  .session-form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .session-form form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .session-form input {
+    width: 100%;
+    height: 40px;
+    padding: 6px 12px;
+    border: 1px solid #dfe0e6;
+    border-radius: 0;
+    margin: 10px;
+  }
+
+  .session-form button {
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 500px;
+    border-width: 0px;
+    margin: 20px;
+    letter-spacing: 2px;
+    min-width: 160px;
+    padding: 16px 48px 18px;
+    white-space: normal;
+    color: white;
+    background-color: #1db954;
+  }
+
+  .session-form button:hover {
+    background-color: #1ed760;
+  }
+
+  .session-form span {
+    font-size: 18px;
+    font-weight: 900;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .session-form h4 {
+    text-align: center;
+  }
+
+  /* home sections */
+
+  .block1 {
+    background-color: #F037A5;
+    color: black;
+  }
+
+  .block2 {
+    background-image: url(https://campaigns.scdn.co/images/hero-burst-cropped.svg);
+    color: white;
+  }
+
+  .block3 {
+    background-color: #CDF564;
+    color: #F037A5;
+  }
+
+  .block {
+    height: 25%;
+    padding: 10px 25px 35px 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .block div {
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .block h1 {
+    font-size: 50px;
+    font-weight: 900;
+  }
+
+  .block h3 {
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  .block div > * {
+    padding: 30px 20px 20px 20px;
+  }
+
+  .block button {
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 500px;
+    border-width: 0px;
+    margin: 20px;
+    letter-spacing: 2px;
+    text-align: center;
+    padding: 16px 48px 18px;
+    white-space: normal;
+    color: white;
+    background-color: black;
+  }
+
+  .blockimg1 {
+    max-width: 500px;
+  }
