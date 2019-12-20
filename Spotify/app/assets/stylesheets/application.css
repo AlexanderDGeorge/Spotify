@@ -32,6 +32,10 @@
     width: 500px;
   }
 
+  button {
+    outline: none;
+  }
+
 
 /* top-bar */
 
@@ -77,6 +81,21 @@
     color: #1ed760;
   }
 
+  .nav-button button {
+    background: none;
+    border: none;
+    padding: 0px;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .nav-button button:hover {
+    color: #1ed760;
+  }
+
 /* session forms */
 
   .session-form {
@@ -115,6 +134,7 @@
     white-space: normal;
     color: white;
     background-color: #1db954;
+    outline: none;
   }
 
   .session-form button:hover {

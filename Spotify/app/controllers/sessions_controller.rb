@@ -6,8 +6,7 @@ class SessionsController < ApplicationController
   def create
     @user = User.find_by_credentials(params[:user][:username], params[:user][:password])
     if @user.nil?
-      flash.now[:errors] = ['Invalid username or password']
-      render :new
+      render json: ['Invalid username and/or password!'], status: 401
     else
       login!(@user)
       redirect_to user_url(@user)
@@ -15,7 +14,11 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    logout!
-    redirect_to new_session_url
+    if current_user
+      logout!
+      redirect_to new_session_url
+    else
+      render json: ['Not signed in!'], status: 404
+    end
   end
 end

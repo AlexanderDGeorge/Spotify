@@ -1,11 +1,11 @@
 import React from 'react';
-import TopBar from './top-bar/top_bar';
+import TopBarContainer from './top-bar/top_bar_container';
 
 export default class Home extends React.Component {
   render() {
     return(
       <div className="home">
-        <TopBar/>
+        <TopBarContainer/>
 
         <section className="block block1">
           <div>

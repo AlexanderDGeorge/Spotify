@@ -10,6 +10,8 @@ class User < ApplicationRecord
 
   # implement associations
 
+  has_many :playlists
+
   
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)

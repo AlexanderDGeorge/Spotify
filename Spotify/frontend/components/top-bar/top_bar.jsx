@@ -4,12 +4,9 @@ import { Link } from 'react-router-dom';
 export default class TopBar extends React.Component{
   constructor(props){
     super(props);
-    console.log(this.props)
-
   };
 
   render(){
-    console.log(this.props)
     return this.props.currentUser ? (
       <header className="top-bar">
         <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 559 168">
@@ -17,7 +14,7 @@ export default class TopBar extends React.Component{
           <a href="#/"></a>
         </svg>
         <ul className="nav-button"> 
-          <p>{this.props.currentUser.username}</p>
+          <p>Welcome, {this.props.currentUser.username}!</p>
           <button onClick={this.props.logout}>Log Out</button>
         </ul>
 
