@@ -19,13 +19,6 @@
     margin: 0;
   }
 
-  svg {
-    min-width: 100px;
-    max-width: 200px;
-    color: black;
-    fill: white;
-  }
-
   .divider {
     border-top: 1px solid #dfe0e6;
     padding: 15px;

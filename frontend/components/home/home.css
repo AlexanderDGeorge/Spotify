@@ -1,0 +1,23 @@
+.home {
+    height: 100vh;
+    width: 100vw;
+    background: #333333;
+    display: grid;
+    grid-template-columns: 20vw 80vw;
+    grid-template-rows: 90vh 10vh;
+    grid-template-areas: 
+        "nav content"
+        "player player";
+}
+
+.nav {
+    grid-area: nav;
+}
+
+.content {
+    grid-area: content;
+}
+
+.player {
+    grid-area: player;
+}

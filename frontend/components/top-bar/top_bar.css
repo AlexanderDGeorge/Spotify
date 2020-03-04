@@ -11,17 +11,6 @@
 
 /* move this portion to main.css */
 
-.spotlofi {
-  font-size: 24px;
-  font-weight: 700;
-  padding: 20px;
-  cursor: pointer;
-}
-
-.spotlofi:hover {
-  color: #1ed760;
-}
-
 a {
   text-decoration: none;
   color: white;
