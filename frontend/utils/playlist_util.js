@@ -1,11 +1,3 @@
-export const createPlaylist = playlist => (
-    $.ajax({
-        method: "POST",
-        url: '/api/playlists',
-        data: { playlist }
-    })
-);
-
 export const fetchPlaylist = playlistId => (
     $.ajax({
         method: "GET",
@@ -18,6 +10,14 @@ export const fetchPlaylists = props => (
         method: "GET",
         url: `/api/playlists`,
         data: { props }
+    })
+);
+
+export const createPlaylist = playlist => (
+    $.ajax({
+        method: "POST",
+        url: '/api/playlists',
+        data: { playlist }
     })
 );
 
