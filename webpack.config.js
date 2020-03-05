@@ -1,7 +1,7 @@
 const path = require("path");
 
 module.exports = {
-  entry: "./frontend/spotify.jsx",
+  entry: "./frontend/spotlofi.jsx",
   output: {
     path: path.resolve(__dirname, "app", "assets", "javascripts"),
     filename: "bundle.js"

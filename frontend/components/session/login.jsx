@@ -39,7 +39,7 @@ export default class Login extends React.Component {
           <span>
             <h4> Don't have an account? </h4>
             <div className="fake-button">
-              <Link to="/signup"> SIGN UP FOR SPOTIFY</Link>
+              <Link to="/signup"> SIGN UP FOR SPOTLOFI</Link>
             </div>
           </span>
 
