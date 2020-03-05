@@ -4,7 +4,7 @@
     background: #333333;
     display: grid;
     grid-template-columns: 20vw 80vw;
-    grid-template-rows: 90vh 10vh;
+    grid-template-rows: auto 10vh;
     grid-template-areas: 
         "nav content"
         "player player";
