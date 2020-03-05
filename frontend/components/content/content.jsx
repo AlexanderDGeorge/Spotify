@@ -1,13 +1,15 @@
 import React from 'react'
-import './content.css'
 import { Switch, Route } from 'react-router-dom'
-import Playlist from '../playlist/playlist';
+import TopBar from '../topbar/topbar';
+import PlaylistRouter from '../playlist/playlist_router';
+import './content.css'
 
 function Content() {
     return (
         <div className="content">
+            <TopBar />
             <Switch>
-                <Route path="/playlist" component={Playlist} />
+                <Route path="/playlists" component={PlaylistRouter} />
             </Switch>
         </div>
     )

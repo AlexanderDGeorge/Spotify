@@ -17,8 +17,8 @@ function NavLinks() {
                 <FaBook />
                 Library
             </Link>
-            <h3>PLAYLISTS</h3>
-            <Link to="/playlist/create">
+            <h4>PLAYLISTS</h4>
+            <Link to="/playlists/new">
                 <FaPlusSquare />
                 Create Playlist
             </Link>

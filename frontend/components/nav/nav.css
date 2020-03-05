@@ -6,7 +6,6 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    height: 40%;
 }
 
 .nav-links a {
@@ -27,8 +26,9 @@
     padding: 20px;
 }
 
-.nav-links h3 {
+.nav-links h4 {
     width: 100%;
     text-align: center;
     color: #aaaaaa;
+    padding: 20px 0;
 }

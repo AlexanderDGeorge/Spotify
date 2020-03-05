@@ -8,9 +8,9 @@ import Landing from './landing/landing';
 
 export default () => (
   <Switch>
-    <Route path="/" component={Home} />
-    <Route exact path="/" component={Landing} />
+    {/* <AuthRoute path="/landing" component={Landing} /> */}
     <AuthRoute path="/signup" component={SignupContainer} />
     <AuthRoute path="/login" component={LoginContainer} />
+    <Route path="/" component={Home} />
   </Switch>
 )

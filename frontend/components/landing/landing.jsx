@@ -1,5 +1,5 @@
 import React from 'react';
-import TopBarContainer from '../top-bar/top_bar_container';
+import TopBarContainer from '../topbar/topbar';
 import './landing.css'
 import { connect } from 'react-redux';
 
