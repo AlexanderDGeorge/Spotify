@@ -15,14 +15,14 @@ const songsReducer = (oldState = {}, action) => {
                 return Object.assign({}, oldState, action.songs);
             }
         case RECEIVE_ARTIST:
-            const newState = Object.assign({}, {}, action.artist.song);
-            return newState;
+            const artistState = Object.assign({}, {}, action.artist.song);
+            return artistState;
         case RECEIVE_ALBUM:
-            const newState = Object.assign({}, {}, action.album.song);
-            return newState;
+            const albumState = Object.assign({}, {}, action.album.song);
+            return albumState;
         case RECEIVE_PLAYLIST:
-            const newState = Object.assign({}, {}, action.playlist.song);
-            return newState;
+            const playlistState = Object.assign({}, {}, action.playlist.song);
+            return playlistState;
         default:
             return oldState;
     }

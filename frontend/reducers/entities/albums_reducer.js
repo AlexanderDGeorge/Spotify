@@ -11,8 +11,8 @@ const albumsReducer = (oldState = {}, action) => {
       const newState = Object.assign({}, oldState, album);
       return newState;
     case RECEIVE_ARTIST:
-      const newState = Object.assign({}, oldState, action.artist.album);
-      return newState;
+      const artistState = Object.assign({}, oldState, action.artist.album);
+      return artistState;
     default: 
     return oldState;
   }

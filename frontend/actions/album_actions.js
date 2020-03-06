@@ -1,4 +1,4 @@
-import * as AlbumUtil from '../util/album_util';
+import * as AlbumUtil from '../utils/album_util';
 
 export const RECEIVE_ALBUM = 'RECEIVE_ALBUM';
 export const RECEIVE_ALBUMS = 'RECEIVE_ALBUMS';

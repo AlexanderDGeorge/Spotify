@@ -1,16 +1,23 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, HashRouter } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from '../utils/route_util';
-import SignupContainer from './session/signup_container';
-import LoginContainer from './session/login_container';
 import Home from './home/home';
 import Landing from './landing/landing';
+import Signup from './session/signup';
+import Login from './session/login';
+import { Provider } from 'react-redux';
+import './app.css';
 
-export default () => (
-  <Switch>
-    {/* <AuthRoute path="/landing" component={Landing} /> */}
-    <AuthRoute path="/signup" component={SignupContainer} />
-    <AuthRoute path="/login" component={LoginContainer} />
-    <Route path="/" component={Home} />
-  </Switch>
+const App = ({ store }) => (
+  <Provider store={store}>
+    <HashRouter>
+      <Switch>
+        <AuthRoute path="/signup" component={Signup} />
+        <AuthRoute path="/login" component={Login} />
+        <Route path="/" component={Home} />
+      </Switch>
+    </HashRouter>
+  </Provider>
 )
+
+export default App;
