@@ -9,21 +9,44 @@
 }
 
 .song {
-    color: white;
-    padding: 10px;
+    color: #111111;
+    padding: 15px;
     width: 100%;
     box-sizing: border-box;
     display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.song:hover {
+    background: #333333;
+    color: white;
+}
+
+.song-play {
+    width: 2.5%;
+    height: auto;
+    padding-right: 20px;
+    cursor: pointer;
 }
 
 .song-name {
-    width: 40%;
+    width: 45%;
+    color: white;
 }
 
 .song-artist {
     width: 40%;
+    color: white;
 }
 
 .song-duration {
     width: 10%;
+    color: white;
+}
+
+.song-settings {
+    width: 2.5%;
+    height: auto;
+    cursor: pointer;
 }

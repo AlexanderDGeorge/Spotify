@@ -1,14 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { fetchSong } from '../../actions/song_actions';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { MdPlayCircleOutline } from 'react-icons/md';
+import { GiSettingsKnobs } from 'react-icons/gi';
 
 function Song(props) {
 
-    console.log(props.song.artist)
+    const [open, setOpen] = useState(false);
 
     return (
         <div className="song">
+            <MdPlayCircleOutline className="song-play"/>
             <p className="song-name">
                 {props.song.name}
             </p>
@@ -18,6 +21,7 @@ function Song(props) {
             <p className="song-duration">
                 {props.song.duration}
             </p>
+            <GiSettingsKnobs className="song-settings" onClick={() => setOpen(true)}/>
         </div>
     )
 }
