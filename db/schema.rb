@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_05_203038) do
+ActiveRecord::Schema.define(version: 2020_03_07_211136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,11 +19,13 @@ ActiveRecord::Schema.define(version: 2020_03_05_203038) do
     t.string "name", null: false
     t.integer "year", null: false
     t.integer "artist_id", null: false
+    t.string "img_url"
     t.index ["artist_id"], name: "index_albums_on_artist_id"
   end
 
   create_table "artists", force: :cascade do |t|
     t.string "name", null: false
+    t.string "img_url"
     t.index ["name"], name: "index_artists_on_name", unique: true
   end
 
@@ -43,7 +45,7 @@ ActiveRecord::Schema.define(version: 2020_03_05_203038) do
     t.string "name", null: false
     t.string "description"
     t.integer "user_id", null: false
-    t.integer "song_id", null: false
+    t.string "img_url"
     t.index ["name", "user_id"], name: "index_playlists_on_name_and_user_id", unique: true
   end
 
@@ -52,6 +54,7 @@ ActiveRecord::Schema.define(version: 2020_03_05_203038) do
     t.string "duration", null: false
     t.integer "artist_id", null: false
     t.integer "album_id", null: false
+    t.string "song_url"
     t.index ["album_id"], name: "index_songs_on_album_id"
     t.index ["artist_id"], name: "index_songs_on_artist_id"
   end

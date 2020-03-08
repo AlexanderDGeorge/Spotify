@@ -1,6 +1,27 @@
 .playlist {
     width: 100%;
     height: 100%;
+    color: white;
+}
+
+.playlists {
+    width: 100%;
+}
+
+.playlist-links {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.playlist-link {
+    padding: 10px;
+    color: #666666;
+}
+
+.playlist-link:hover {
+    color: white;
 }
 
 .new-playlist {

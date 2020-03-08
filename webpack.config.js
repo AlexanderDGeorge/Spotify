@@ -1,7 +1,7 @@
 const path = require("path");
 
 module.exports = {
-  entry: "./frontend/spotlofi.jsx",
+  entry: ['babel-polyfill', "./frontend/spotlofi.jsx"],
   output: {
     path: path.resolve(__dirname, "app", "assets", "javascripts"),
     filename: "bundle.js"

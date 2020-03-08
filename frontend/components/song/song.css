@@ -1,0 +1,29 @@
+.songs {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow-y: hidden;
+}
+
+.song {
+    color: white;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+}
+
+.song-name {
+    width: 40%;
+}
+
+.song-artist {
+    width: 40%;
+}
+
+.song-duration {
+    width: 10%;
+}

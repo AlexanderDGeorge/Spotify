@@ -1,7 +1,7 @@
 class Api::SongsController < ApplicationController
     def index
         if search_term
-            @songs = Song.where('lower(title) LIKE ?', "%#{search_term.downcase}%")
+            @songs = Song.where('lower(name) LIKE ?', "%#{search_term.downcase}%")
             render :index
         else
             @songs = Song.all

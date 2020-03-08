@@ -6,8 +6,6 @@ import './topbar.css';
 
 function TopBar(props) {
 
-    console.log(props)
-
     function topLinks() {
         if (props.currentUser) {
             return (
