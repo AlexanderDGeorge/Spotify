@@ -3,3 +3,4 @@ Gemfile.lock
 package-lock.json
 bundle.js
 log
+tmp
