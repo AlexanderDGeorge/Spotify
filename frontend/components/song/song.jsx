@@ -3,15 +3,24 @@ import { fetchSong } from '../../actions/song_actions';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { MdPlayCircleOutline } from 'react-icons/md';
+import { IoMdHeartEmpty, IoMdHeart } from 'react-icons/io';
 import { GiSettingsKnobs } from 'react-icons/gi';
+import { createLike, deleteLike } from '../../actions/like_actions';
 
 function Song(props) {
 
     const [open, setOpen] = useState(false);
 
+    function handleLike() {
+        console.log('before likeSong')
+        props.likeSong({ user_id: props.userId, song_id: props.song.id })
+        console.log('after handleLike')
+    }
+
     return (
         <div className="song">
-            <MdPlayCircleOutline className="song-play"/>
+            <MdPlayCircleOutline className="song-button"/>
+            <IoMdHeartEmpty className="song-button" onClick={handleLike}/> 
             <p className="song-name">
                 {props.song.name}
             </p>
@@ -21,13 +30,19 @@ function Song(props) {
             <p className="song-duration">
                 {props.song.duration}
             </p>
-            <GiSettingsKnobs className="song-settings" onClick={() => setOpen(true)}/>
+            <GiSettingsKnobs className="song-button" onClick={() => setOpen(true)}/>
         </div>
     )
 }
 
+const mapState = state => ({
+    userId: () => state.session.id
+})
+
 const mapDispatch = dispatch => ({
-    fetchSong: songId => dispatch(fetchSong(songId))
+    fetchSong: songId => dispatch(fetchSong(songId)),
+    likeSong: like => dispatch(createLike(like)),
+    unlikeSong: likeId => dispatch(deleteLike(likeId)),
 });
 
-export default connect(undefined, mapDispatch)(Song);
+export default connect(mapState, mapDispatch)(Song);

@@ -1,11 +1,13 @@
 .songs {
     height: 100%;
     width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: scroll;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    overflow-y: hidden;
 }
 
 .song {
@@ -23,13 +25,6 @@
     color: white;
 }
 
-.song-play {
-    width: 2.5%;
-    height: auto;
-    padding-right: 20px;
-    cursor: pointer;
-}
-
 .song-name {
     width: 45%;
     color: white;
@@ -45,8 +40,9 @@
     color: white;
 }
 
-.song-settings {
-    width: 2.5%;
+.song-button {
+    width: 20px;
     height: auto;
     cursor: pointer;
+    padding-right: 20px;
 }

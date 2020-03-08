@@ -2,6 +2,7 @@ node_modules
 Gemfile.lock
 package-lock.json
 bundle.js
+lib
 log
 storage
 test

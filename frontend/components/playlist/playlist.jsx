@@ -21,7 +21,6 @@ function Playlist(props) {
                     { playlist.name }
                 </div>
                 <div>
-                    
                     { playlist.song_ids.map(song_id => {
                         return (
                             <Song id={song_id} />

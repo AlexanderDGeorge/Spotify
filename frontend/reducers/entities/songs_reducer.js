@@ -7,7 +7,7 @@ const songsReducer = (oldState = {}, action) => {
     Object.freeze(oldState);
     switch (action.type) {
         case RECEIVE_SONG:
-            return Object.assign({}, oldState, {[action.song.id]: action.song});
+            return Object.assign({}, oldState, action.song);
         case RECEIVE_SONGS:
             if (action.searchTerm) {
                 return Object.assign({}, oldState, action.songs);
