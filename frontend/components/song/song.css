@@ -27,13 +27,26 @@
 }
 
 .song-name {
-    width: 45%;
+    width: 30%;
     color: white;
 }
 
 .song-artist {
-    width: 40%;
+    width: 30%;
     color: white;
+}
+
+.song-artist:hover {
+    text-decoration: underline;
+}
+
+.song-album {
+    width: 30%;
+    color: white;
+}
+
+.song-album:hover {
+    text-decoration: underline;
 }
 
 .song-duration {

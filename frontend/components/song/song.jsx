@@ -39,6 +39,9 @@ function Song(props) {
             <Link className="song-artist" to={"/artists/" + props.song.artist_id}>
                 {props.song.artist}
             </Link>
+            <Link className="song-album" to={"/albums/" + props.song.album_id}>
+                {props.song.album}
+            </Link>
             <p className="song-duration">
                 {props.song.duration}
             </p>
