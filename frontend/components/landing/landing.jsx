@@ -4,7 +4,6 @@ import './landing.css'
 import { connect } from 'react-redux';
 
 function Landing(props) {
-  console.log(props);
   return (
     <div className="landing">
       <TopBarContainer />

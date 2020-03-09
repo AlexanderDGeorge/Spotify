@@ -13,14 +13,14 @@ function NavLinks() {
                 <FaSearch />
                 Search
             </Link>
+            <Link to="/liked">
+                <FaHeart />
+                Liked Songs
+            </Link>
             <h4>PLAYLISTS</h4>
             <Link to="/playlists/new">
                 <FaPlusSquare />
                 Create Playlist
-            </Link>
-            <Link to="/liked">
-                <FaHeart />
-                Liked Songs
             </Link>
         </div>
     )

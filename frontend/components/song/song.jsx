@@ -6,15 +6,27 @@ import { MdPlayCircleOutline } from 'react-icons/md';
 import { IoMdHeartEmpty, IoMdHeart } from 'react-icons/io';
 import { GiSettingsKnobs } from 'react-icons/gi';
 import { createLike, deleteLike } from '../../actions/like_actions';
+import { createPlaylistSong, deletePlaylistSong } from '../../actions/playlist_song_actions';
 
 function Song(props) {
 
     const [open, setOpen] = useState(false);
+    const [openPlaylists, setOpenPlaylists] = useState(false);
 
     function handleLike() {
-        console.log('before likeSong')
         props.likeSong({ user_id: props.userId, song_id: props.song.id })
-        console.log('after handleLike')
+    }
+
+    function songDropdown() {
+        return (
+            <div className="song-dropdown">
+                <p className="song-option">Add to Queue</p>
+                <Link className="song-option" to="/artist">Go to Artist</Link>
+                <Link className="song-option" to="/album">Go to Album</Link>
+                <p className="song-option">Remove from Liked Songs</p>
+                <p className="song-option">Add to Playlist</p>
+            </div>
+        )
     }
 
     return (
@@ -30,7 +42,8 @@ function Song(props) {
             <p className="song-duration">
                 {props.song.duration}
             </p>
-            <GiSettingsKnobs className="song-button" onClick={() => setOpen(true)}/>
+            <GiSettingsKnobs className="song-button" onClick={() => setOpen(!open)}/>
+            {open ? songDropdown() : null}
         </div>
     )
 }
@@ -43,6 +56,8 @@ const mapDispatch = dispatch => ({
     fetchSong: songId => dispatch(fetchSong(songId)),
     likeSong: like => dispatch(createLike(like)),
     unlikeSong: likeId => dispatch(deleteLike(likeId)),
+    addToPlaylist: song => dispatch(createPlaylistSong(song)),
+    removeFromPlaylist: songId => dispatch(deletePlaylistSong(songId)),
 });
 
 export default connect(mapState, mapDispatch)(Song);

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchPlaylist } from '../../actions/playlist_actions';
 import './playlist.css';
 import Song from '../song/song';
+import ContentHeader from '../content/content-header';
 
 function Playlist(props) {
     
@@ -11,15 +12,11 @@ function Playlist(props) {
     }, []);
     
     let playlist = (props.playlists[props.match.params.id])
-    console.log(playlist)
     if (!playlist) return null;
     else {
         return (
             <div className="playlist">
-                <div className="playlist-header">
-                    HEADER
-                    { playlist.name }
-                </div>
+                <ContentHeader type={'playlist'} content={playlist} />
                 <div>
                     { playlist.song_ids.map(song_id => {
                         return (

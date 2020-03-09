@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchSong } from '../../actions/song_actions';
 import Song from './song';
+import ContentHeader from '../content/content-header';
 
 function LikedSongs(props) {
 
@@ -17,10 +18,9 @@ function LikedSongs(props) {
         })
     }, [])
 
-    console.log(props.songs);
-
     return (
         <div className="liked-songs">
+            <ContentHeader content={{ name: 'Liked Songs' }} type={'liked'}/>
             { props.songs.map(song => {
                 return <Song song={song} key={song.id} />
             }) }

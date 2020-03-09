@@ -2,3 +2,65 @@
     background: #111111;
     overflow: hidden;
 }
+
+.content-header {
+    width: 100%;
+    height: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #333333;
+    background: linear-gradient(180deg, #444444, #111111);
+}
+
+.header-img {
+    width: 30%;
+    height: 100%;
+}
+
+.content-info {
+    width: 70%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.content-info h2{
+    color: white;
+    font-size: 50px;
+}
+
+.content-info h4 {
+    color: #666666;
+    font-size: 16px;
+}
+
+.content-buttons {
+    padding-top: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.content-play  {
+    width: 150px;
+    height: 40px;
+    border-radius: 20px;
+    background: limegreen;
+    color: white;
+    cursor: pointer;
+}
+
+.content-delete {
+    background: transparent;
+    padding-left: 20px;
+}
+
+.content-delete svg {
+    background: transparent;
+    height: 30px;
+    width: auto;
+    color: white;
+    cursor: pointer;
+}
