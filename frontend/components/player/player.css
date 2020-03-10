@@ -1,3 +1,22 @@
 .player {
     background: #222222;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.play-button {
+    height: 50px !important;
+    width: auto;
+}
+
+.player svg {
+    height: 30px;
+    width: auto;
+    padding: 10px;
+    color: #aaaaaa;
+}
+
+.player svg:hover {
+    color: white;
 }

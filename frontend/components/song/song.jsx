@@ -8,7 +8,6 @@ import { GiSettingsKnobs } from 'react-icons/gi';
 import { createLike, deleteLike } from '../../actions/like_actions';
 import { createPlaylistSong, deletePlaylistSong } from '../../actions/playlist_song_actions';
 import SongDropdown from './song-dropdown';
-import { qAddSong } from '../../actions/queue_actions';
 
 function Song(props) {
 

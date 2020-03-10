@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { qAddSong } from '../../actions/queue_actions';
 
 
 function SongDropdown(props) {

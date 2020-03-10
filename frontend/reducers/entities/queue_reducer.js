@@ -1,4 +1,4 @@
-import { ADD_SONG_TO_QUEUE, NEXT_SONG, PREV_SONG, PLAY_SONG, PAUSE_SONG, CYCLE_SONG } from "../../actions/queue_actions";
+import { ADD_SONG_TO_QUEUE, NEXT_SONG, PREV_SONG, PLAY_SONG, PAUSE_SONG, CYCLE_SONG, TOGGLE_SHUFFLE, TOGGLE_REPEAT } from "../../actions/queue_actions";
 
 
 const nullQueue = {
@@ -28,6 +28,12 @@ const queueReducer = (oldState = nullQueue, action) => {
             return newState;
         case PAUSE_SONG:
             newState.isPlaying = false;
+            return newState;
+        case TOGGLE_SHUFFLE:
+            newState.shuffle = !newState.shuffle;
+            return newState;
+        case TOGGLE_REPEAT:
+            newState.repeat = !newState.repeat;
             return newState;
         default:
             return oldState;
