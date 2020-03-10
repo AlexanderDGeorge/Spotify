@@ -5,6 +5,7 @@ import PlaylistRouter from '../playlist/playlist-router';
 import './content.css'
 import LikedSongs from '../song/liked-songs';
 import Search from '../search/search';
+import Home from '../home/home';
 
 function Content() {
     return (

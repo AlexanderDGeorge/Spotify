@@ -10,7 +10,7 @@ function Player(props) {
 
     function handleControls() {
         let audio = document.getElementById("audio");
-        console.log(audio)
+        // console.log(audio.ended)
         if (queue.isPlaying) {
             audio.pause();
             props.pauseSong();
@@ -19,22 +19,32 @@ function Player(props) {
             props.playSong();
         }
     }
-    
-    console.log(props)
-    
-    return (
-        <div className="player">
-            {queue.queue.length > 0 ? <audio id="audio" src={songs[1].song_url}></audio> : null}
-            <MdShuffle />
-            <MdSkipPrevious onClick={props.prevSong}/>
-            {queue.isPlaying ? 
-                <MdPauseCircleOutline className="play-button" onClick={handleControls}/> : 
-                <MdPlayCircleOutline className="play-button" onClick={handleControls}/>
-            }
-            <MdSkipNext onClick={props.nextSong}/>
-            <MdRepeat />
-        </div>
-    )
+
+    function handleAudio() {
+        let audio = document.getElementById("audio");
+        if (audio.ended) {
+            props.nextSong();
+        }
+    }
+
+    if (songs.length > 0) {
+        return (
+            <div className="player">
+                {queue.queue.length > 0 ? <audio id="audio" src={songs[1].song_url}></audio> : null }
+                <MdShuffle />
+                <MdSkipPrevious onClick={props.prevSong}/>
+                {queue.isPlaying ? 
+                    <MdPauseCircleOutline className="play-button" onClick={handleControls}/> : 
+                    <MdPlayCircleOutline className="play-button" onClick={handleControls}/>
+                }
+                <MdSkipNext onClick={props.nextSong}/>
+                <MdRepeat />
+                {/* {handleAudio()} */}
+            </div>
+        )
+    } else {
+        return null;
+    }
 }
 
 const mapState = state => ({

@@ -1,14 +1,8 @@
 .songs {
     height: 100%;
     width: 100%;
-    padding: 20px;
-    position: relative;
     box-sizing: border-box;
     overflow-y: scroll;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
 .song {

@@ -15,7 +15,9 @@ function ContentHeader(props) {
 
     return (
         <div className="content-header">
-            <div className="header-img"></div>
+            <div className="header-img">
+                {content.img_url ? <img src={content.img_url} /> : <img src={window.defaultCover} />}
+            </div>
             <div className="content-info">
                 {props.type === 'liked' ? null : <h4>{props.type.toUpperCase()}</h4>}
                 <h2>{content.name}</h2>
