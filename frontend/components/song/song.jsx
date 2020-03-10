@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { fetchSong } from '../../actions/song_actions';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -7,26 +7,15 @@ import { IoMdHeartEmpty, IoMdHeart } from 'react-icons/io';
 import { GiSettingsKnobs } from 'react-icons/gi';
 import { createLike, deleteLike } from '../../actions/like_actions';
 import { createPlaylistSong, deletePlaylistSong } from '../../actions/playlist_song_actions';
+import SongDropdown from './song-dropdown';
+import { qAddSong } from '../../actions/queue_actions';
 
 function Song(props) {
 
     const [open, setOpen] = useState(false);
-    const [openPlaylists, setOpenPlaylists] = useState(false);
 
     function handleLike() {
         props.likeSong({ user_id: props.userId, song_id: props.song.id })
-    }
-
-    function songDropdown() {
-        return (
-            <div className="song-dropdown">
-                <p className="song-option">Add to Queue</p>
-                <Link className="song-option" to="/artist">Go to Artist</Link>
-                <Link className="song-option" to="/album">Go to Album</Link>
-                <p className="song-option">Remove from Liked Songs</p>
-                <p className="song-option">Add to Playlist</p>
-            </div>
-        )
     }
 
     return (
@@ -46,7 +35,7 @@ function Song(props) {
                 {props.song.duration}
             </p>
             <GiSettingsKnobs className="song-button" onClick={() => setOpen(!open)}/>
-            {open ? songDropdown() : null}
+            {open ? <SongDropdown setOpen={val => setOpen(val)} song={props.song} /> : null}
         </div>
     )
 }

@@ -61,7 +61,7 @@ jirodreams = Album.create!({ name: 'Jiro Dreams', year: 2020, artist_id: dontcry
 soundsandthings = Album.create!({ name: 'sounds and things', year: 2016, artist_id: jhfly.id });
 
 # Songs
-snowman = Song.create!({ name: 'Snowman', duration: '3:15', artist_id: wys.id, album_id: amstudysession.id });
+snowman = Song.create!({ name: 'Snowman', duration: '3:15', artist_id: wys.id, album_id: amstudysession.id, song_url: 'https://www.youtube.com/watch?v=j9ziXYpFs1I' });
 cottoncloud = Song.create! ({ name: 'Cotton Cloud', duration: '2:03', artist_id: fatb.id, album_id: amstudysession.id });
 theplacesweusedtowalk = Song.create! ({ name: 'The Places We Used to Walk', duration: '2:16', artist_id: tenderspring.id, album_id: amstudysession.id });
 woolgloves = Song.create! ({ name: 'Wool Gloves', duration: '2:46', artist_id: imagiro.id, album_id: amstudysession.id });

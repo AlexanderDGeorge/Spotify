@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <title>Spotlofi</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -19,6 +18,10 @@
       </script>
     <% end %>
     
+    <script>
+        window.favicon = "<%= image_url('favicon.ico') %>"
+    </script>
+
   </head>
 
   <body>

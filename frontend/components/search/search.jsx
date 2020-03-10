@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import Results from './results';
+import './search.css';
 
 function Search(props) {
 
     const [search, setSearch] = useState("");
 
-    function handleSearch() {
+    function handleSearch(e) {
+        setSearch(e.target.value);
 
     }
 
@@ -12,19 +15,17 @@ function Search(props) {
         <div className="search">
             <form onSubmit={handleSearch}>
                 <input 
+                    className="search-input"
                     type="text"
                     value={search}
-                    onChange={e => setSearch(e.target.value)}
+                    onChange={handleSearch}
                     onBlur={handleSearch}
                     placeholder="search"
                 />
             </form>
+            {/* <Results search={search}/> */}
         </div>
     )
 }
-
-const mapDispatch = dispatch => ({
-    
-})
 
 export default Search;
