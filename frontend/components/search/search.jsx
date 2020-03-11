@@ -8,7 +8,6 @@ function Search(props) {
 
     function handleSearch(e) {
         setSearch(e.target.value);
-
     }
 
     return (
@@ -23,7 +22,7 @@ function Search(props) {
                     placeholder="search"
                 />
             </form>
-            {/* <Results search={search}/> */}
+            <Results search={search}/>
         </div>
     )
 }

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux'
 import { qNextSong, qPrevSong, qPlaySong, qPauseSong, qToggleRepeat, qToggleShuffle } from '../../actions/queue_actions';
 import { MdSkipPrevious, MdPlayCircleOutline, MdSkipNext, MdShuffle, MdRepeat, MdPauseCircleOutline } from 'react-icons/md';
@@ -7,13 +7,13 @@ import './player.css';
 
 function Player(props) {
     const { queue, songs } = props;
+    const audio = document.getElementById("audio");
 
     useEffect(() => {
-        props.fetchSongs()
+        props.fetchSongs();
     }, []);
 
     function handleControls() {
-        let audio = document.getElementById("audio");
         if (queue.isPlaying) {
             audio.pause();
             props.pauseSong();
@@ -24,16 +24,19 @@ function Player(props) {
     }
 
     function handlePrev() {
-        let audio = document.getElementById("audio");
-        props.prevSong();
-        audio.play();
+        if (audio.currentTime > 3) {
+            audio.currentTime = 0;
+        } else {
+            props.prevSong();
+        }
     }
 
     function handleNext() {
-        let audio = document.getElementById("audio");
         props.nextSong();
-        
-        audio.play();
+        if (queue.priority.length == 0 && queue.shuffledQ.length == 0) {
+            audio.pause();
+            props.pauseSong();
+        }
     }
 
     function handleSource() {
@@ -43,12 +46,21 @@ function Player(props) {
         } else {
             return songs[queue.priority[0] - 1].song_url;
         }
+        // if (!queue.currentSong) { 
+        //     props.nextSong();
+        // }
+        // return queue.currentSong ? songs[queue.currentSong].song_url : null;
     }
 
-    if (songs.length > 0) {
+    function handleRepeat() {
+        props.toggleRepeat();
+        audio.loop();
+    }
+
+    if (songs) {
         return (
             <div className="player">
-                <audio id="audio" src={handleSource()} onEnded={handleNext}></audio>
+                <audio id="audio" autoPlay={queue.isPlaying} src={handleSource()} onEnded={handleNext}></audio>
                 <MdShuffle />
                 <MdSkipPrevious onClick={handlePrev}/>
                 {queue.isPlaying ? 
@@ -56,7 +68,7 @@ function Player(props) {
                     <MdPlayCircleOutline className="play-button" onClick={handleControls}/>
                 }
                 <MdSkipNext onClick={handleNext}/>
-                <MdRepeat />
+                <MdRepeat onClick={handleRepeat} style={props.repeat ? { color: "limegreen" } : { color: "#aaaaaa" }}/>
             </div>
         )
     } else {
@@ -65,8 +77,8 @@ function Player(props) {
 }
 
 const mapState = state => ({
-    queue: state.entities.queue,
-    songs: Object.values(state.entities.songs),
+    queue: state.queue,
+    songs: state.entities.songs,
 });
 
 const mapDispatch = dispatch => ({

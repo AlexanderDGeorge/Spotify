@@ -8,6 +8,9 @@ import { connect } from 'react-redux';
 function Results(props) {
 
     let results = [];
+    const { artists, albums, playlists, songs } = props;
+
+    console.log(props);
 
     useEffect(() => {
         fetch();
@@ -15,11 +18,6 @@ function Results(props) {
     }, []);
 
     function fetch() {
-        // if (props.search) {
-        //     props.fetchAlbums(props.search)
-        //     props.fetchArtists(props.search)
-        //     props.fetchPlaylists(props.search)
-        //     props.fetchSongs(props.search)
         props.fetchAlbums();
         props.fetchArtists();
         props.fetchPlaylists();
@@ -28,25 +26,29 @@ function Results(props) {
 
     function search() {
         if (props.search) {
-            results.push(props.artists.filter(artist => artist.name.toLowerCase().includes(props.search.toLowerCase())));
-            results.push(props.albums.filter(album => album.name.toLowerCase().includes(props.search.toLowerCase())));
-            results.push(props.playlists.filter(playlist => playlist.name.toLowerCase().includes(props.search.toLowerCase())));
-            results.push(props.songs.filter(song => song.name.toLowerCase().includes(props.search.toLowerCase())));
+            results.push(artists.filter(artist => artist.name.toLowerCase().includes(props.search.toLowerCase())));
+            results.push(albums.filter(album => album.name.toLowerCase().includes(props.search.toLowerCase())));
+            results.push(playlists.filter(playlist => playlist.name.toLowerCase().includes(props.search.toLowerCase())));
+            results.push(songs.filter(song => song.name.toLowerCase().includes(props.search.toLowerCase())));
         } else {
-            results.push(props.artists.name);
-            results.push(props.albums.name);
-            results.push(props.playlists.name);
-            results.push(props.songs.name);
+            results.push(artists.name);
+            results.push(albums.name);
+            results.push(playlists.name);
+            results.push(songs.name);
         }
     }
-    
-    return (
-        <div className="results">
-            { results.map(result => {
-                return <div>{result.name}</div>
-            })}
-        </div>
-    )
+
+    if (songs.length === 0 || albums.length === 0) return null;
+    else {
+        console.log(results);
+        return (
+            <div className="results">
+                { results.map(result => {
+                    return <div>{result.name}</div>
+                })}
+            </div>
+        )
+    }
 }
 
 const mapState = state => ({

@@ -78,7 +78,7 @@ function SongDropdown(props) {
 }
 
 const mapState = state => ({
-    queue: state.entities.queue,
+    queue: state.queue,
     user: state.entities.user,
     likes: Object.values(state.entities.user.likes),
     playlists: Object.values(state.entities.playlists),

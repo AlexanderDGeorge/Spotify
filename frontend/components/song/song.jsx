@@ -8,6 +8,7 @@ import { GiSettingsKnobs } from 'react-icons/gi';
 import { createLike, deleteLike } from '../../actions/like_actions';
 import { createPlaylistSong, deletePlaylistSong } from '../../actions/playlist_song_actions';
 import SongDropdown from './song-dropdown';
+import { qPlayNow, qPauseSong, qPlaySong } from '../../actions/queue_actions';
 
 function Song(props) {
 
@@ -22,9 +23,20 @@ function Song(props) {
         if (songIds.includes(song.id)) {
             let like = likes[songIds.indexOf(song.id)]
             props.unlikeSong(like)
-            // props.unlikeSong({ user_id: user.id, song_id: song.id })
         } else {
             props.likeSong({ user_id: props.userId, song_id: song.id })
+        }
+    }
+
+    function handlePlay() {
+        if (props.currentSong === song.id) {
+            if (props.isPlaying) {
+                props.pauseSong()
+            } else {
+                props.playSong()
+            }
+        } else {
+            props.playNow(song.id);
         }
     }
 
@@ -36,10 +48,14 @@ function Song(props) {
         }
     }
 
+    function isPlaying() {
+        return props.isPlaying && props.currentSong === song.id ? true : false;
+    }
+
     return (
         <div className="song">
-            <MdPlayCircleOutline className="song-button"/>
-            {isLiked() ? <IoMdHeart className="song-button" onClick={handleLike} /> : <IoMdHeartEmpty className="song-button" onClick={handleLike}/> } 
+            <MdPlayCircleOutline className="song-button" onClick={handlePlay} color={isPlaying() ? "limegreen" : "" }/>
+            {isLiked() ? <IoMdHeart color="white" className="song-button" onClick={handleLike} /> : <IoMdHeartEmpty className="song-button" onClick={handleLike}/> } 
             <p className="song-name">
                 {song.name}
             </p>
@@ -59,8 +75,10 @@ function Song(props) {
 }
 
 const mapState = state => ({
-    userId: () => state.session.id,
+    userId: state.session.id,
     likes: Object.values(state.entities.user.likes),
+    currentSong: state.queue.currentSong,
+    isPlaying: state.queue.isPlaying,
 })
 
 const mapDispatch = dispatch => ({
@@ -69,6 +87,9 @@ const mapDispatch = dispatch => ({
     unlikeSong: likeId => dispatch(deleteLike(likeId)),
     addToPlaylist: song => dispatch(createPlaylistSong(song)),
     removeFromPlaylist: songId => dispatch(deletePlaylistSong(songId)),
+    playNow: songId => dispatch(qPlayNow(songId)),
+    pauseSong: () => dispatch(qPauseSong()),
+    playSong: () => dispatch(qPlaySong()),
 });
 
 export default connect(mapState, mapDispatch)(Song);
