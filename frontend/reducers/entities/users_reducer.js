@@ -1,24 +1,24 @@
-import { RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER } from '../../actions/session_actions';
-import { RECEIVE_LIKE } from '../../actions/like_actions';
-import { merge } from 'lodash';
+import { RECEIVE_USER, LOGOUT_USER } from '../../actions/session_actions';
+import { RECEIVE_LIKE, REMOVE_LIKE } from '../../actions/like_actions';
 
-const nullSession = {
-  	id: null,
-  	loggedIn: false,
-};
-
-const usersReducer = (oldState = nullSession, action) => {
+const usersReducer = (oldState = {}, action) => {
     Object.freeze(oldState);
+    let newState = Object.assign({}, oldState);
     switch (action.type) {
-        case RECEIVE_CURRENT_USER:
-            return Object.assign({}, { [action.user.id]: action.user, loggedIn: true });
-        case LOGOUT_CURRENT_USER:
-            return nullSession;
+        case RECEIVE_USER:
+            newState = action.user;
+            return newState;
+        case LOGOUT_USER:
+            newState = {};
+            return newState;
         case RECEIVE_LIKE:
-            const id = action.like.song_id;
-            const likeState = merge({}, oldState);
-            likeState[action.like.user_id].likes.push(id);
-            return likeState;
+            console.log(action)
+            newState.likes.push(action.like);
+            return newState;
+        case REMOVE_LIKE:
+            const idx = newState.likes.indexOf(action.like);
+            newState.likes.splice(idx, 1);
+            return newState;
         default:
             return oldState;
     }

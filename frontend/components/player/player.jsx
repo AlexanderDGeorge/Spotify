@@ -7,10 +7,10 @@ import './player.css';
 
 function Player(props) {
     const { queue, songs } = props;
+    console.log(props.state);
 
     function handleControls() {
         let audio = document.getElementById("audio");
-        // console.log(audio.ended)
         if (queue.isPlaying) {
             audio.pause();
             props.pauseSong();
@@ -27,10 +27,14 @@ function Player(props) {
         }
     }
 
+    function handleSource() {
+
+    }
+
     if (songs.length > 0) {
         return (
             <div className="player">
-                {queue.queue.length > 0 ? <audio id="audio" src={songs[1].song_url}></audio> : null }
+                {/* <audio id="audio" src={songs[1].song_url}></audio> */}
                 <MdShuffle />
                 <MdSkipPrevious onClick={props.prevSong}/>
                 {queue.isPlaying ? 
@@ -50,6 +54,7 @@ function Player(props) {
 const mapState = state => ({
     queue: state.entities.queue,
     songs: Object.values(state.entities.songs),
+    state: state
 });
 
 const mapDispatch = dispatch => ({

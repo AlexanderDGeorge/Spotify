@@ -9,7 +9,7 @@ function NewPlaylist(props) {
     console.log(props)
 
     function handleSubmit() {
-        props.createPlaylist({ user_id: props.currentUser.id, name, description })
+        props.createPlaylist({ user_id: props.user.id, name, description })
         props.history.push("/")
     }
 
@@ -38,7 +38,7 @@ function NewPlaylist(props) {
 }
 
 const mapState = state => ({
-    currentUser: state.entities.users[state.session.id]
+    user: state.entities.user
 });
 
 const mapDispatch = dispatch => ({

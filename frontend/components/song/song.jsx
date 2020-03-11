@@ -11,36 +11,56 @@ import SongDropdown from './song-dropdown';
 
 function Song(props) {
 
+    const { likes, song } = props;
     const [open, setOpen] = useState(false);
+    const songIds = [];
+    likes.forEach(like => {
+        songIds.push(like.song_id)
+    });
 
     function handleLike() {
-        props.likeSong({ user_id: props.userId, song_id: props.song.id })
+        if (songIds.includes(song.id)) {
+            let like = likes[songIds.indexOf(song.id)]
+            props.unlikeSong(like)
+            // props.unlikeSong({ user_id: user.id, song_id: song.id })
+        } else {
+            props.likeSong({ user_id: props.userId, song_id: song.id })
+        }
+    }
+
+    function isLiked() {
+        if (songIds.includes(song.id)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     return (
         <div className="song">
             <MdPlayCircleOutline className="song-button"/>
-            <IoMdHeartEmpty className="song-button" onClick={handleLike}/> 
+            {isLiked() ? <IoMdHeart className="song-button" onClick={handleLike} /> : <IoMdHeartEmpty className="song-button" onClick={handleLike}/> } 
             <p className="song-name">
-                {props.song.name}
+                {song.name}
             </p>
-            <Link className="song-artist" to={"/artists/" + props.song.artist_id}>
-                {props.song.artist}
+            <Link className="song-artist" to={"/artists/" + song.artist_id}>
+                {song.artist}
             </Link>
-            <Link className="song-album" to={"/albums/" + props.song.album_id}>
-                {props.song.album}
+            <Link className="song-album" to={"/albums/" + song.album_id}>
+                {song.album}
             </Link>
             <p className="song-duration">
-                {props.song.duration}
+                {song.duration}
             </p>
             <GiSettingsKnobs className="song-button" onClick={() => setOpen(!open)}/>
-            {open ? <SongDropdown setOpen={val => setOpen(val)} song={props.song} /> : null}
+            {open ? <SongDropdown setOpen={val => setOpen(val)} song={song} /> : null}
         </div>
     )
 }
 
 const mapState = state => ({
-    userId: () => state.session.id
+    userId: () => state.session.id,
+    likes: Object.values(state.entities.user.likes),
 })
 
 const mapDispatch = dispatch => ({

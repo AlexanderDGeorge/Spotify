@@ -6,11 +6,12 @@ import './topbar.css';
 
 function TopBar(props) {
 
+    console.log(props.state)
     function topLinks() {
-        if (props.currentUser) {
+        if (props.session.loggedIn) {
             return (
                 <div>
-                <p>Welcome, {props.currentUser.username}!</p>
+                <p>Welcome, {props.user.username}!</p>
                 <Logout />
                 </div>
             )
@@ -33,7 +34,8 @@ function TopBar(props) {
 }
 
 const mapState = state => ({
-    currentUser: state.entities.users[state.session.id],
+    user: state.entities.user,
+    session: state.session,
     state: state
 });
 

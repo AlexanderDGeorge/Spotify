@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { signUp } from '../../actions/session_actions';
+import { signup } from '../../actions/session_actions';
 
 function Signup(props) {
 	const [username, setUsername] = useState("");
@@ -41,7 +41,7 @@ function Signup(props) {
 }
 
 const mapDispatch = dispatch => ({
- 	signup: user => dispatch(signUp(user))
+ 	signup: user => dispatch(signup(user))
 });
 
 export default connect(undefined, mapDispatch)(Signup)

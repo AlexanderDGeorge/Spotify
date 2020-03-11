@@ -8,7 +8,7 @@ import './landing.css'
 
 function Landing(props) {
 
-    if (props.currentUser) {
+    if (props.session.loggedIn) {
         return (
             <div className="landing">
                 <Nav />
@@ -26,7 +26,7 @@ function Landing(props) {
 }
 
 const mapState = state => ({
-  currentUser: state.entities.users[state.session.id]
+  session: state.session
 });
 
 export default connect(mapState, null)(Landing);

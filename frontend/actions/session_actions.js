@@ -1,17 +1,17 @@
 import * as SessionUtil from '../utils/session_util';
 
-export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
-export const LOGOUT_CURRENT_USER = "LOGOUT_CURRENT_USER";
+export const RECEIVE_USER = "RECEIVE_USER";
+export const LOGOUT_USER = "LOGOUT_USER";
 export const RECEIVE_ERRORS = "RECEIVE_ERRORS";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
 
 const receiveCurrentUser = user => ({
-	type: RECEIVE_CURRENT_USER,
+	type: RECEIVE_USER,
 	user
 });
 
 const logoutCurrentUser = () => ({
-  	type: LOGOUT_CURRENT_USER
+  	type: LOGOUT_USER
 });
 
 const receiveErrors = errors => ({
@@ -19,12 +19,8 @@ const receiveErrors = errors => ({
  	errors
 });
 
-const clearErrors = () => ({
-  	type: CLEAR_ERRORS
-});
-
-export const signUp = user => dispatch => (
-  	SessionUtil.signUp(user).then(
+export const signup = user => dispatch => (
+  	SessionUtil.signup(user).then(
     	user => dispatch(receiveCurrentUser(user)),
     	errors => dispatch(receiveErrors(errors.responseJSON)))
 );

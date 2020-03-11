@@ -10,7 +10,7 @@ class Api::LikesController < ApplicationController
     end
   
     def destroy
-      @like = Like.find_by( user_id: like_params[:user_id], song_id: like_params[:song_id])
+      @like = Like.find(params[:id])
       if @like
         copy_like = @like.dup
         @like.destroy

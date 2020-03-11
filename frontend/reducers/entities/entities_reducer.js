@@ -12,5 +12,5 @@ export default combineReducers({
   playlists: playlistsReducer,
   songs: songsReducer,
   queue: queueReducer,
-  users: usersReducer,
+  user: usersReducer,
 });

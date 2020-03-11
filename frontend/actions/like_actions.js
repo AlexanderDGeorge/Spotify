@@ -8,18 +8,19 @@ const receiveLike = like => ({
     like
 });
 
-const removeLike = () => ({
-    type: REMOVE_LIKE
+const removeLike = like => ({
+    type: REMOVE_LIKE,
+    like
 });
 
 export const createLike = like => dispatch => (
     LikeUtil.createLike(like).then(
-        like => dispatch(receiveLike(like))
+        () => dispatch(receiveLike(like))
     )
 );
 
-export const deleteLike = likeId => dispatch => (
-    LikeUtil.deleteLike(likeId).then(
-        () => dispatch(removeLike())
+export const deleteLike = like => dispatch => (
+    LikeUtil.deleteLike(like.id).then(
+        () => dispatch(removeLike(like))
     )
 );

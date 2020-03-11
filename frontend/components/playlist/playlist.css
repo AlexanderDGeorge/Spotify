@@ -39,12 +39,15 @@
 }
 
 .new-playlist button {
-    border-radius: 10px;
     border: 0;
-    background-color: #1db954;
+    background-color: limegreen;
     padding: 20px;
+    color: white;
+    width: 150px;
+    height: 40px;
+    border-radius: 20px;
 }
 
 .new-playlist button:hover {
-    background-color: #1ed760;
+    background-color: lime;
 }

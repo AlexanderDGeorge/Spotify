@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { fetchSong } from '../../actions/song_actions';
+import { fetchSongs } from '../../actions/song_actions';
 import Song from './song';
 import ContentHeader from '../content/content-header';
 
@@ -9,19 +9,26 @@ function LikedSongs(props) {
     const likes = (props.likes);
     const songIds = [];
     likes.forEach(like => {
-        songIds.push(like.song_id)
+        songIds.push(like.song_id - 1)
     })
 
+    console.log(props.songs)
+
     useEffect(() => {
-        songIds.forEach(songId => {
-            props.fetchSong(songId)
-        })
+        // songIds.forEach(songId => {
+        //     props.fetchSong(songId)
+        // })
+        props.fetchSongs();
     }, [])
 
-    return (
+    if (props.songs.length === 0) return null;
+    else return (
         <div className="liked-songs">
             <ContentHeader content={{ name: 'Liked Songs' }} type={'liked'}/>
-            { props.songs.map(song => {
+            { songIds.map(id => {
+                if (!props.songs[id]) debugger;
+                console.log(props.songs[id])
+                let song = props.songs[id];
                 return <Song song={song} key={song.id} />
             }) }
         </div>
@@ -29,12 +36,12 @@ function LikedSongs(props) {
 }
 
 const mapState = state => ({
-    likes: Object.values(state.entities.users[state.session.id].likes),
+    likes: Object.values(state.entities.user.likes),
     songs: Object.values(state.entities.songs)
 });
 
 const mapDispatch = dispatch => ({
-    fetchSong: songId => dispatch(fetchSong(songId)),
+    fetchSongs: () => dispatch(fetchSongs()),
 })
 
 export default connect(mapState, mapDispatch)(LikedSongs);
