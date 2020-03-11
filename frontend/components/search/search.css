@@ -1,12 +1,39 @@
 .search {
     height: 100%;
     width: 100%;
+    overflow-y: scroll;
 }
 
 .search-input {
-    height: 40px;
-    width: 50%;
+    height: 20px;
+    width: 40%;
     padding: 10px;
     margin: 40px;
     border-radius: 20px;
+}
+
+.results h2 {
+    color: white;
+    width: 100px;
+    padding: 40px 0 10px 10px;
+    font-size: 30px;
+    font-weight: 300;
+}
+
+.results-div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.results-div a {
+    height: 20px;
+    width: 100px;
+    padding: 10px;
+    color: #aaaaaa;
+}
+
+.results-div a:hover {
+    text-decoration: underline;
+    color: white;
 }
