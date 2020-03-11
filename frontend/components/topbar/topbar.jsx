@@ -6,7 +6,6 @@ import './topbar.css';
 
 function TopBar(props) {
 
-    console.log(props.state)
     function topLinks() {
         if (props.session.loggedIn) {
             return (
@@ -36,7 +35,6 @@ function TopBar(props) {
 const mapState = state => ({
     user: state.entities.user,
     session: state.session,
-    state: state
 });
 
 export default connect(mapState, undefined)(TopBar);

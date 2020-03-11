@@ -39,9 +39,7 @@ function Results(props) {
             results.push(props.songs.name);
         }
     }
-
-    console.log(results);
-
+    
     return (
         <div className="results">
             { results.map(result => {

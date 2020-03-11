@@ -67,6 +67,7 @@
     flex-direction: column;
     justify-content: space-between;
     color: white;
+    box-shadow: 1px 4px 10px 2px rgba(0, 0, 0, 0.6);
     z-index: 1;
 }
 
@@ -82,4 +83,25 @@
 .liked-songs {
     height: 100%;
     overflow-y: scroll;
+}
+
+.playlist-show {
+    width: 150px;
+    position: absolute;
+    left: -100px;
+    bottom: 0px;
+    background: #222222;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 1px 4px 10px 2px rgba(0, 0, 0, 0.6);
+    z-index: 1;
+}
+
+.playlist-show p {
+    padding: 10px;
+}
+
+.playlist-show p:hover {
+    background: #444444;
+    cursor: pointer;
 }

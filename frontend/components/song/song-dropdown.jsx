@@ -1,13 +1,15 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { qAddSong } from '../../actions/queue_actions';
 import { createLike, deleteLike } from '../../actions/like_actions';
+import { createPlaylistSong } from '../../actions/playlist_song_actions';
 
 
 function SongDropdown(props) {
     const ref = useRef(null);
-    const { song, user, likes } = props;
+    const { song, user, likes, playlists } = props;
+    const [hover, setHover] = useState(false);
     const songIds = [];
     likes.forEach(like => {
         songIds.push(like.song_id)
@@ -36,6 +38,24 @@ function SongDropdown(props) {
         }
     }
 
+    function showPlaylists() {
+        return (
+            <div>
+                <p>Add to Playlist</p>
+                <div className="playlist-show">
+                    {playlists.map(playlist => 
+                        <p key={playlist.id} 
+                            onClick={() => props.addToPlaylist({
+                                playlist_id: playlist.id,
+                                song_id: song.id
+                            })}
+                        >{playlist.name}</p>
+                    )}
+                </div>
+            </div>
+        )
+    }
+
     function isLiked() {
         if (songIds.includes(song.id)) {
             return 'Remove from Liked Songs'
@@ -50,7 +70,9 @@ function SongDropdown(props) {
             <Link className="song-option" to={"/artists/" + song.artist_id}>Go to Artist</Link>
             <Link className="song-option" to={"/albums/" + song.album_id}>Go to Album</Link>
             <p className="song-option" onClick={handleLike}>{isLiked()}</p>
-            <p className="song-option">Add to Playlist</p>
+            <div className="song-option" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
+                {hover ? showPlaylists() : <p>Add to Playlist</p>}
+            </div>
         </div>
     )
 }
@@ -59,12 +81,14 @@ const mapState = state => ({
     queue: state.entities.queue,
     user: state.entities.user,
     likes: Object.values(state.entities.user.likes),
+    playlists: Object.values(state.entities.playlists),
 });
 
 const mapDispatch = dispatch => ({
     addSongToQueue: songId => dispatch(qAddSong(songId)),
     likeSong: like => dispatch(createLike(like)),
     unlikeSong: like => dispatch(deleteLike(like)),
+    addToPlaylist: playlistSong => dispatch(createPlaylistSong(playlistSong))
 })
 
 export default connect(mapState, mapDispatch)(SongDropdown);

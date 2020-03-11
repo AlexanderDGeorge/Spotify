@@ -2,12 +2,15 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux'
 import { qNextSong, qPrevSong, qPlaySong, qPauseSong, qToggleRepeat, qToggleShuffle } from '../../actions/queue_actions';
 import { MdSkipPrevious, MdPlayCircleOutline, MdSkipNext, MdShuffle, MdRepeat, MdPauseCircleOutline } from 'react-icons/md';
-import { fetchSong } from '../../actions/song_actions';
+import { fetchSongs } from '../../actions/song_actions';
 import './player.css';
 
 function Player(props) {
     const { queue, songs } = props;
-    console.log(props.state);
+
+    useEffect(() => {
+        props.fetchSongs()
+    }, []);
 
     function handleControls() {
         let audio = document.getElementById("audio");
@@ -20,30 +23,40 @@ function Player(props) {
         }
     }
 
-    function handleAudio() {
+    function handlePrev() {
         let audio = document.getElementById("audio");
-        if (audio.ended) {
-            props.nextSong();
-        }
+        props.prevSong();
+        audio.play();
+    }
+
+    function handleNext() {
+        let audio = document.getElementById("audio");
+        props.nextSong();
+        
+        audio.play();
     }
 
     function handleSource() {
-
+        if (queue.priority.length === 0) {
+            if (queue.shuffledQ.length === 0) return null;
+            else return queue.shuffledQ[queue.queueIndex];
+        } else {
+            return songs[queue.priority[0] - 1].song_url;
+        }
     }
 
     if (songs.length > 0) {
         return (
             <div className="player">
-                {/* <audio id="audio" src={songs[1].song_url}></audio> */}
+                <audio id="audio" src={handleSource()} onEnded={handleNext}></audio>
                 <MdShuffle />
-                <MdSkipPrevious onClick={props.prevSong}/>
+                <MdSkipPrevious onClick={handlePrev}/>
                 {queue.isPlaying ? 
                     <MdPauseCircleOutline className="play-button" onClick={handleControls}/> : 
                     <MdPlayCircleOutline className="play-button" onClick={handleControls}/>
                 }
-                <MdSkipNext onClick={props.nextSong}/>
+                <MdSkipNext onClick={handleNext}/>
                 <MdRepeat />
-                {/* {handleAudio()} */}
             </div>
         )
     } else {
@@ -54,7 +67,6 @@ function Player(props) {
 const mapState = state => ({
     queue: state.entities.queue,
     songs: Object.values(state.entities.songs),
-    state: state
 });
 
 const mapDispatch = dispatch => ({
@@ -64,7 +76,7 @@ const mapDispatch = dispatch => ({
     pauseSong: () => dispatch(qPauseSong()),
     toggleShuffle: () => dispatch(qToggleShuffle()),
     toggleRepeat: () => dispatch(qToggleRepeat()),
-    getSong: songId => dispatch(fetchSong(songId)),
+    fetchSongs: () => dispatch(fetchSongs())
 });
 
 export default connect(mapState, mapDispatch)(Player);

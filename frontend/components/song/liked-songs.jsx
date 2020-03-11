@@ -12,12 +12,7 @@ function LikedSongs(props) {
         songIds.push(like.song_id - 1)
     })
 
-    console.log(props.songs)
-
     useEffect(() => {
-        // songIds.forEach(songId => {
-        //     props.fetchSong(songId)
-        // })
         props.fetchSongs();
     }, [])
 
@@ -27,7 +22,6 @@ function LikedSongs(props) {
             <ContentHeader content={{ name: 'Liked Songs' }} type={'liked'}/>
             { songIds.map(id => {
                 if (!props.songs[id]) debugger;
-                console.log(props.songs[id])
                 let song = props.songs[id];
                 return <Song song={song} key={song.id} />
             }) }

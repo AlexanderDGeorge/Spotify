@@ -5,6 +5,7 @@ export const PLAY_SONG = "PLAY_SONG";
 export const PAUSE_SONG = "PAUSE_SONG";
 export const TOGGLE_SHUFFLE = "TOGGLE_SHUFFLE";
 export const TOGGLE_REPEAT = "TOGGLE_REPEAT";
+export const PLAY_NOW = "PLAY_NOW";
 
 const addSongtoQueue = songId => ({
     type: ADD_SONG_TO_QUEUE,
@@ -35,6 +36,11 @@ const toggleRepeat = () => ({
     type: TOGGLE_REPEAT
 });
 
+const playNow = songId => ({
+    type: PLAY_NOW,
+    songId
+});
+
 export const qAddSong = songId => dispatch => (
     dispatch(addSongtoQueue(songId))
 );
@@ -61,4 +67,8 @@ export const qToggleShuffle = () => dispatch => (
 
 export const qToggleRepeat = () => dispatch => (
     dispatch(toggleRepeat())
+);
+
+export const qPlayNow = songId => dispatch => (
+    dispatch(playNow(songId))
 );

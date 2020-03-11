@@ -1,5 +1,5 @@
 .content {
-    background: #111111;
+    background: #1d1d1d;
     overflow: hidden;
 }
 
@@ -10,7 +10,7 @@
     justify-content: center;
     align-items: center;
     border-bottom: 1px solid #333333;
-    background: linear-gradient(180deg, #444444, #111111);
+    background: linear-gradient(180deg, #444444, #1d1d1d);
 }
 
 .header-img {

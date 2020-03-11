@@ -6,8 +6,6 @@ function NewPlaylist(props) {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     
-    console.log(props)
-
     function handleSubmit() {
         props.createPlaylist({ user_id: props.user.id, name, description })
         props.history.push("/")

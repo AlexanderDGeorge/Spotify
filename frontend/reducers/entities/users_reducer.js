@@ -12,7 +12,6 @@ const usersReducer = (oldState = {}, action) => {
             newState = {};
             return newState;
         case RECEIVE_LIKE:
-            console.log(action)
             newState.likes.push(action.like);
             return newState;
         case REMOVE_LIKE:
