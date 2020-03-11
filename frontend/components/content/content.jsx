@@ -18,7 +18,7 @@ function Content() {
                 <Route path="/albums/:id" component={Album} />
                 <Route path="/liked" component={LikedSongs} />
                 <Route path="/search" component={Search} />
-                <Route path="/" component={Songs} />
+                <Route path="/" component={Home} />
             </Switch>
         </div>
     )

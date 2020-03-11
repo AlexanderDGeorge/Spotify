@@ -1,4 +1,4 @@
-.landing {
+.main {
     height: 100vh;
     width: 100vw;
     background: #333333;
@@ -20,4 +20,64 @@
 
 .player {
     grid-area: player;
+}
+
+.landing {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.splash {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: #F037A5;
+    background: linear-gradient(#F037A5 -60%, #FAE62D 140%) no-repeat;
+    overflow: hidden;
+}
+
+.bubbles {
+    background: url(https://www.scdn.co/i/home/hero-burst.svg) no-repeat;
+    height: 200%;
+    width: 150%;
+    background-position: top -410px center;
+}
+
+.splash-content {
+    z-index: 1;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.splash-content h1 {
+    font-size: 80px;
+    font-weight: 900;
+}
+
+.splash-content h4 {
+    font-size: 18px;
+    font-weight: 400;
+    padding: 30px;
+}
+
+.splash-content button {
+    min-width: 150px;
+    border-radius: 500px;
+    padding: 16px 48px 16px;
+    color: white;
+    background: #1DB954;
+    letter-spacing: 2px;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.splash-content button:hover {
+    background: #1ED760;
 }

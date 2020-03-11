@@ -17,11 +17,11 @@ function NavLinks() {
                 <FaHeart />
                 Liked Songs
             </Link>
-            <h4>PLAYLISTS</h4>
             <Link to="/playlists/new">
                 <FaPlusSquare />
                 Create Playlist
             </Link>
+            <h4>PLAYLISTS</h4>
         </div>
     )
 }

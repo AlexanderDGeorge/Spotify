@@ -40,16 +40,19 @@ function Player(props) {
     }
 
     function handleSource() {
+        // debugger
         if (queue.priority.length === 0) {
             if (queue.shuffledQ.length === 0) return null;
             else return queue.shuffledQ[queue.queueIndex];
         } else {
-            return songs[queue.priority[0] - 1].song_url;
+            return songs[queue.priority[0]].song_url;
         }
+        
         // if (!queue.currentSong) { 
         //     props.nextSong();
+        //     // console.log('here')
         // }
-        // return queue.currentSong ? songs[queue.currentSong].song_url : null;
+        // return queue.currentSong ? songs[queue.currentSong].song_url : queue.shuffledQ[queue.queueIndex];
     }
 
     function handleRepeat() {

@@ -23,7 +23,7 @@ const queueReducer = (oldState = nullQueue, action) => {
             return newState;
         case NEXT_SONG:
             if (newState.priority.length > 0) {
-                newState.currentSong = newState.priority.shift() 
+                newState.currentSong = newState.priority.shift();
             } else {
                 newState.queueIndex++;
                 newState.currentSong = newState.shuffledQ[newState.queueIndex];
