@@ -21,7 +21,7 @@ function ContentHeader(props) {
             <div className="content-info">
                 {props.type === 'liked' ? null : <h4>{props.type.toUpperCase()}</h4>}
                 <h2>{content.name}</h2>
-                {props.type === 'liked' ? null : <h4>by {content.user.username}</h4>}
+                {props.type === 'liked' || props.type === 'artist' ? null : props.type === 'playlist' ? <h4>by {content.user.username}</h4> : <h4>by {content.artist}</h4>}
                 <div className="content-buttons">
                     <button className="content-play">Play</button>
                     {props.type === 'playlist' ? <button className="content-delete" onClick={handleDelete}> <TiDeleteOutline /> </button> : null}

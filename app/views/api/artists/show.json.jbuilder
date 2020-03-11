@@ -1,6 +1,6 @@
 json.set! :artist do
     json.set! @artist.id do
-      json.extract! @artist, :id, :name, :bio
+      json.extract! @artist, :id, :name
       json.songIds @artist.songs.pluck(:id)
       json.albumIds @artist.albums.pluck(:id)
     end

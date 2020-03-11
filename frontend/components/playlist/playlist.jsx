@@ -1,42 +1,42 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchPlaylist } from '../../actions/playlist_actions';
-import './playlist.css';
 import Song from '../song/song';
 import ContentHeader from '../content/content-header';
 import { fetchSongs } from '../../actions/song_actions';
+import './playlist.css';
 
 function Playlist(props) {
+
+    const { playlists, songs } = props;
+    const playlist = playlists[props.match.params.id];
     
-    console.log(props);
     useEffect(() => {
         props.fetchSongs()
         props.fetchPlaylist(props.match.params.id)
     }, []);
     
-    let playlist = (props.playlists[props.match.params.id])
-    const { songs } = props;
-    if (!playlist || songs.length === 0) return null;
-    else {
+    if (playlist && !!Object.values(songs).length) {
         return (
             <div className="playlist">
                 <ContentHeader type={'playlist'} content={playlist} />
                 <div>
                     { playlist.song_ids.map(song_id => {
-                        console.log(songs[song_id])
                         return (
-                            <Song song={songs[song_id]} />
+                            <Song song={songs[song_id]} key={song_id} />
                         )
                     })}
                 </div>
             </div>
         )
+    } else {
+        return null
     }
 }
 
 const mapState = state => ({
     playlists: state.entities.playlists,
-    songs: Object.values(state.entities.songs),
+    songs: state.entities.songs,
 });
 
 const mapDispatch = dispatch => ({

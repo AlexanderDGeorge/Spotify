@@ -32,7 +32,6 @@ function SongDropdown(props) {
         if (songIds.includes(song.id)) {
             let like = likes[songIds.indexOf(song.id)]
             props.unlikeSong(like)
-            // props.unlikeSong({ user_id: user.id, song_id: song.id })
         } else {
             props.likeSong({ user_id: user.id, song_id: song.id })
         }
