@@ -33,11 +33,12 @@
 
 .splash {
     position: absolute;
-    height: 100%;
+    height: 95%;
     width: 100%;
     background-color: #F037A5;
     background: linear-gradient(#F037A5 -60%, #FAE62D 140%) no-repeat;
     overflow: hidden;
+    top: 0;
 }
 
 .bubbles {
@@ -80,4 +81,28 @@
 
 .splash-content button:hover {
     background: #1ED760;
+}
+
+.credits {
+    height: 25%;
+    width: 100%;
+    position: absolute;
+    top: 95%;
+    background: black;
+    box-sizing: border-box;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.credits svg {
+    height: 50px;
+    width: auto;
+    color: white;
+    padding: 20px;
+}
+
+.credits p{
+    color: white;
+    height: 20px;
 }

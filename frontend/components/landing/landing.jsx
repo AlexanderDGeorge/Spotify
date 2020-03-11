@@ -5,6 +5,8 @@ import Nav from '../nav/nav';
 import Content from '../content/content';
 import Player from '../player/player';
 import { login } from '../../actions/session_actions';
+import { FaGithub, FaLinkedinIn, FaAngellist, FaAddressCard } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import './landing.css'
 
 function Landing(props) {
@@ -30,6 +32,23 @@ function Landing(props) {
                     <button onClick={() => props.login({ username: "alex", password: "password" }).then(() => props.history.push("/"))}>
                         GET SPOTLOFI FREE
                     </button>
+                </div>
+                <div className="credits">
+                    <p>Hi! I'm looking for a job. Check me out!</p>
+                    <div className="links">
+                        <a href="https://github.com/AlexanderDGeorge/Spotlofi">
+                            <FaGithub />
+                        </a>
+                        <a href="https://www.linkedin.com/in/alexander-george-410466151/">
+                            <FaLinkedinIn />
+                        </a>
+                        <a href="https://angel.co/alexander-george-3">
+                            <FaAngellist />
+                        </a>
+                        <a href="https://alexgeorge.dev">
+                            <FaAddressCard />
+                        </a>
+                    </div>
                 </div>
             </div>
         )

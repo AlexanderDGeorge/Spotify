@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Logout from '../session/logout';
 import './topbar.css';
+import { login } from '../../actions/session_actions';
 
 function TopBar(props) {
 
@@ -17,8 +18,11 @@ function TopBar(props) {
         } else {
             return (
                 <div className="nav-button">
-                <Link to="/signup">Sign Up</Link>
-                <Link to="/login">Log In</Link>
+                    <button onClick={() => props.login({ username: "alex", password: "password" }).then(() => props.history.push("/"))}>
+                        Demo
+                    </button>
+                    <Link to="/signup">Sign Up</Link>
+                    <Link to="/login">Log In</Link>
                 </div>
             )
         }
@@ -37,4 +41,8 @@ const mapState = state => ({
     session: state.session,
 });
 
-export default connect(mapState, undefined)(TopBar);
+const mapDispatch = dispatch => ({
+    login: user => dispatch(login(user))
+})
+
+export default connect(mapState, mapDispatch)(TopBar);
