@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 
 function Results(props) {
 
-    console.log(props.search)
     const { artists, albums, playlists, songs } = props;
     const [albumResults, setAlbums] = useState([]);
     const [artistResults, setArtists] = useState([]);
@@ -17,7 +16,6 @@ function Results(props) {
 
     function search() {
         if (props.search) {
-            // debugger
             setAlbums(albums.filter(album => album.name.toLowerCase().includes(props.search.toLowerCase())));
             setArtists(artists.filter(artist => artist.name.toLowerCase().includes(props.search.toLowerCase())));
             setPlaylists(playlists.filter(playlist => playlist.name.toLowerCase().includes(props.search.toLowerCase())));
@@ -29,8 +27,6 @@ function Results(props) {
             setSongs(songs);
         }
     }
-
-    // console.log(albumResults, artistResults, playlistResults, songResults)
 
     return (
         <div className="results">

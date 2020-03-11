@@ -24,7 +24,6 @@ function Search(props) {
     }
 
     if (artists.length && albums.length && playlists.length && songs.length) {
-        console.log(search)
         return (
             <div className="search">
                 <form onSubmit={handleSearch}>

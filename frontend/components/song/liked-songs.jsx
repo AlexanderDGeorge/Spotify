@@ -21,7 +21,6 @@ function LikedSongs(props) {
         <div className="liked-songs">
             <ContentHeader content={{ name: 'Liked Songs' }} type={'liked'}/>
             { songIds.map(id => {
-                if (!props.songs[id]) debugger;
                 let song = props.songs[id];
                 return <Song song={song} key={song.id} />
             }) }
