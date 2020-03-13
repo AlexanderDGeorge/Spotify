@@ -1,24 +1,22 @@
-# Spotify Clone
+# Spotlofi | [Live Site](https://spotlofi.herokuapp.com/)
+Spotlofi is a lofi music streaming application that is heavily inspired by Spotify. Built with PostgresQL, Rails, React, and Redux.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Technologies
+* JavaScript
+* React
+* Redux
+* Rails
+* PostgresQL
+* AWS
 
-Things you may want to cover:
+## Features
 
-* ruby version - '2.5.1'
+### User Authentification
 
-* rails version - '5.2.4'
+### Playlist CRUD
 
-* System dependencies
+### Likes
 
-* Configuration
+### Search
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
+### Player
