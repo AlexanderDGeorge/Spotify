@@ -1,11 +1,11 @@
 import React from 'react';
-import TopBar from '../topbar/topbar'
+import User from '../user/user';
 import './home.css';
 
 function Home(props) {
     return(
         <div className="home">
-            <TopBar />
+            <User />
         </div>
     )
 }
