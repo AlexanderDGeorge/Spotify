@@ -23,7 +23,7 @@ function Search(props) {
         setSearch(e.target.value);
     }
 
-    if (artists.length && albums.length && playlists.length && songs.length) {
+    if (artists.length && albums.length && songs.length) {
         return (
             <div className="search">
                 <form onSubmit={handleSearch}>

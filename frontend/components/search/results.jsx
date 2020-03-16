@@ -61,7 +61,7 @@ function Results(props) {
             <div className="results-div">
                 {songResults.map(song => {
                     return (
-                        <Link to={"albums/" + song.artist_id}>{song.name}</Link>
+                        <Link to={"albums/" + song.album_id}>{song.name}</Link>
                     )
                 })}
             </div>
