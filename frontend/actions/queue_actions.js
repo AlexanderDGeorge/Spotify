@@ -1,4 +1,5 @@
 export const ADD_SONG_TO_QUEUE = "ADD_SONG_TO_QUEUE";
+export const ADD_SONGS_TO_QUEUE = "ADD_SONGS_TO_QUEUE";
 export const NEXT_SONG = "NEXT_SONG";
 export const PREV_SONG = "PREV_SONG";
 export const PLAY_SONG = "PLAY_SONG";
@@ -10,6 +11,11 @@ export const PLAY_NOW = "PLAY_NOW";
 const addSongtoQueue = song => ({
     type: ADD_SONG_TO_QUEUE,
     song
+});
+
+const addSongstoQueue = songs => ({
+    type: ADD_SONGS_TO_QUEUE,
+    songs
 });
 
 const nextSong = () => ({
@@ -43,6 +49,10 @@ const playNow = song => ({
 
 export const qAddSong = song => dispatch => (
     dispatch(addSongtoQueue(song))
+);
+
+export const qAddSongs = songs => dispatch => (
+    dispatch(addSongstoQueue(songs))
 );
 
 export const qNextSong = () => dispatch => (

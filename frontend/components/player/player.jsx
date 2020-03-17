@@ -3,7 +3,7 @@ import ReactPlayer from 'react-player';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createLike, deleteLike } from '../../actions/like_actions';
-import { qNextSong, qPrevSong, qPlaySong, qPauseSong } from '../../actions/queue_actions';
+import { qNextSong, qPrevSong, qPlaySong, qPauseSong, qToggleShuffle } from '../../actions/queue_actions';
 import { MdSkipPrevious, MdPlayCircleOutline, MdSkipNext, MdShuffle, MdRepeat, MdPauseCircleOutline, MdVolumeUp } from 'react-icons/md';
 import { IoMdHeartEmpty, IoMdHeart } from 'react-icons/io';
 import './player.css';
@@ -34,6 +34,7 @@ function Player(props) {
     }
 
     function handleToggleShuffle() {
+        props.toggleShuffle();
         setShuffle(!shuffle)
     }
 
@@ -175,6 +176,7 @@ const mapDispatch = dispatch => ({
     prevSong: () => dispatch(qPrevSong()),
     playSong: () => dispatch(qPlaySong()),
     pauseSong: () => dispatch(qPauseSong()),
+    toggleShuffle: () => dispatch(qToggleShuffle()),
     likeSong: like => dispatch(createLike(like)),
     unlikeSong: likeId => dispatch(deleteLike(likeId)),
 });

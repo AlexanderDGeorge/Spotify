@@ -41,8 +41,7 @@
 
 .new-playlist button {
     border: 0;
-    background-color: limegreen;
-    padding: 20px;
+    background-color: #1DB954;
     color: white;
     width: 150px;
     height: 40px;
@@ -50,5 +49,5 @@
 }
 
 .new-playlist button:hover {
-    background-color: lime;
+    background-color: #1ED760;
 }

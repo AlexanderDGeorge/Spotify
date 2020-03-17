@@ -52,9 +52,13 @@
     width: 150px;
     height: 40px;
     border-radius: 20px;
-    background: limegreen;
+    background: #1DB954;
     color: white;
     cursor: pointer;
+}
+
+.content-play:hover {
+    background: #1ED760;
 }
 
 .content-delete {
