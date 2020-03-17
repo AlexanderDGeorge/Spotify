@@ -5,13 +5,9 @@ import {
 
 
 const nullQueue = {
-    currentSong: null,
-    isPlaying: false,
-    shuffle: false,
-    repeat: false,
-    priority: [],
-    shuffledQ: [],
-    queueIndex: -1
+    index: 0,
+    playing: false,
+    songArray: []
 }
 
 const queueReducer = (oldState = nullQueue, action) => {
@@ -19,39 +15,35 @@ const queueReducer = (oldState = nullQueue, action) => {
     const newState = Object.assign({}, oldState);
     switch (action.type) {
         case ADD_SONG_TO_QUEUE:
-            newState.priority.push(action.songId);
+            newState.songArray.push(action.song);
             return newState;
         case NEXT_SONG:
-            if (newState.priority.length > 0) {
-                newState.currentSong = newState.priority.shift();
-            } else {
-                newState.queueIndex++;
-                newState.currentSong = newState.shuffledQ[newState.queueIndex];
-            }
+            newState.index++;
             return newState;
         case PREV_SONG:
-            if (newState.priority.length === 0 && newState.queueIndex > 1) {
-                newState.queueIndex--;
-                newState.currentSong = newState.shuffledQ[newState.queueIndex];
-            }
-            return newState;
-        case PLAY_SONG:
-            newState.isPlaying = true;
-            return newState;
-        case PAUSE_SONG:
-            newState.isPlaying = false;
-            return newState;
-        case TOGGLE_SHUFFLE:
-            // need to implement shuffle function
-            newState.shuffle = !newState.shuffle;
-            return newState;
-        case TOGGLE_REPEAT:
-            newState.repeat = !newState.repeat;
+            newState.index--;
             return newState;
         case PLAY_NOW:
-            newState.currentSong = action.songId;
-            newState.isPlaying = true;
+            newState.songArray.splice(newState.index, 0, action.song);
+            newState.playing = true;
             return newState;
+        case PLAY_SONG:
+            newState.playing = true;
+            return newState;
+        case PAUSE_SONG:
+            newState.playing = false;
+            return newState;
+        // case TOGGLE_SHUFFLE:
+        //     // need to implement shuffle function
+        //     newState.shuffle = !newState.shuffle;
+        //     return newState;
+        // case TOGGLE_REPEAT:
+        //     newState.repeat = !newState.repeat;
+        //     return newState;
+        // case PLAY_NOW:
+        //     newState.currentSong = action.songId;
+        //     newState.isPlaying = true;
+        //     return newState;
         default:
             return oldState;
     }

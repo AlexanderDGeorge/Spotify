@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { fetchSong } from '../../actions/song_actions';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { MdPlayCircleOutline } from 'react-icons/md';
+import { MdPlayCircleOutline, MdPauseCircleOutline } from 'react-icons/md';
 import { IoMdHeartEmpty, IoMdHeart } from 'react-icons/io';
 import { GiSettingsKnobs } from 'react-icons/gi';
 import { createLike, deleteLike } from '../../actions/like_actions';
@@ -12,7 +12,7 @@ import { qPlayNow, qPauseSong, qPlaySong } from '../../actions/queue_actions';
 
 function Song(props) {
 
-    const { likes, song } = props;
+    const { likes, song, queue } = props;
     const [open, setOpen] = useState(false);
     const songIds = [];
     likes.forEach(like => {
@@ -29,14 +29,10 @@ function Song(props) {
     }
 
     function handlePlay() {
-        if (props.currentSong === song.id) {
-            if (props.isPlaying) {
-                props.pauseSong()
-            } else {
-                props.playSong()
-            }
+        if (queue.songArray[queue.index] === song) {
+            queue.playing ? props.pauseSong() : props.playSong();
         } else {
-            props.playNow(song.id);
+            props.playNow(song);
         }
     }
 
@@ -49,12 +45,15 @@ function Song(props) {
     }
 
     function isPlaying() {
-        return props.isPlaying && props.currentSong === song.id ? true : false;
+        return queue.songArray[queue.index] === song && queue.playing
     }
 
     return (
         <div className="song">
-            <MdPlayCircleOutline className="song-button" onClick={handlePlay} color={isPlaying() ? "limegreen" : "" }/>
+            {isPlaying() ? 
+                <MdPauseCircleOutline className="song-button" onClick={handlePlay} color="limegreen"/> :
+                <MdPlayCircleOutline className="song-button" onClick={handlePlay} />
+            }
             {isLiked() ? <IoMdHeart color="white" className="song-button" onClick={handleLike} /> : <IoMdHeartEmpty className="song-button" onClick={handleLike}/> } 
             <p className="song-name">
                 {song.name}
@@ -77,8 +76,7 @@ function Song(props) {
 const mapState = state => ({
     userId: state.session.id,
     likes: Object.values(state.entities.user.likes),
-    currentSong: state.queue.currentSong,
-    isPlaying: state.queue.isPlaying,
+    queue: state.queue,
 })
 
 const mapDispatch = dispatch => ({
@@ -87,7 +85,7 @@ const mapDispatch = dispatch => ({
     unlikeSong: likeId => dispatch(deleteLike(likeId)),
     addToPlaylist: song => dispatch(createPlaylistSong(song)),
     removeFromPlaylist: songId => dispatch(deletePlaylistSong(songId)),
-    playNow: songId => dispatch(qPlayNow(songId)),
+    playNow: song => dispatch(qPlayNow(song)),
     pauseSong: () => dispatch(qPauseSong()),
     playSong: () => dispatch(qPlaySong()),
 });

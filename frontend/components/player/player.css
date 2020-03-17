@@ -1,22 +1,74 @@
 .player {
     background: #222222;
+    display: grid;
+    grid-template-columns: 200px auto 200px;
+    grid-template-rows: 80% 20%;
+    grid-template-areas: 
+        "info controls volume"
+        "info duration volume";
+}
+
+.info {
+    grid-area: info;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.info span {
+    padding: 10px;
+    color: white;
+}
+
+.controls {
+    grid-area: controls;
+    height: 100%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.play-button {
-    height: 50px !important;
-    width: auto;
+.volume {
+    grid-area: volume;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.player svg {
-    height: 30px;
+.duration {
+    grid-area: duration;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.controls-svg {
+    height: 20px;
     width: auto;
     padding: 10px;
-    color: #aaaaaa;
+    color: #cccccc;
 }
 
-.player svg:hover {
+.controls-svg:hover {
     color: white;
+}
+
+.play-button {
+    height: 40px;
+    width: auto;
+    padding: 10px;
+    color: #cccccc;
+}
+
+.play-button:hover {
+    color: white;
+}
+
+.toggle-button {
+    height: 20px;
+    width: auto;
+    padding: 10px;
+    color: limegreen;
 }

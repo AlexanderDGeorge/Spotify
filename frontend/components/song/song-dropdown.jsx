@@ -65,7 +65,7 @@ function SongDropdown(props) {
 
     return (
         <div className="song-dropdown" ref={ref}>
-            <p className="song-option" onClick={() => {props.addSongToQueue(song.id); props.setOpen(false)}} >Add to Queue</p>
+            <p className="song-option" onClick={() => {props.addSongToQueue(song); props.setOpen(false)}} >Add to Queue</p>
             <Link className="song-option" to={"/artists/" + song.artist_id}>Go to Artist</Link>
             <Link className="song-option" to={"/albums/" + song.album_id}>Go to Album</Link>
             <p className="song-option" onClick={handleLike}>{isLiked()}</p>
@@ -84,7 +84,7 @@ const mapState = state => ({
 });
 
 const mapDispatch = dispatch => ({
-    addSongToQueue: songId => dispatch(qAddSong(songId)),
+    addSongToQueue: song => dispatch(qAddSong(song)),
     likeSong: like => dispatch(createLike(like)),
     unlikeSong: like => dispatch(deleteLike(like)),
     addToPlaylist: playlistSong => dispatch(createPlaylistSong(playlistSong))

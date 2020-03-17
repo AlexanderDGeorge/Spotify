@@ -5,13 +5,9 @@ const songsReducer = (oldState = {}, action) => {
     let newState = Object.assign({}, oldState);
     switch (action.type) {
         case RECEIVE_SONG:
-            newState = action.song;
-            return newState;
+            return Object.assign({}, oldState, action.song)
         case RECEIVE_SONGS:
-            Object.values(action.songs).map(song => {
-                newState[song.id] = song
-            })
-            return newState;
+            return Object.assign({}, oldState, action.songs)
         default:
             return oldState;
     }
