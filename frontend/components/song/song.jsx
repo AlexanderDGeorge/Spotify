@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { fetchSong } from '../../actions/song_actions';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { MdPlayCircleOutline, MdPauseCircleOutline } from 'react-icons/md';
 import { IoMdHeartEmpty, IoMdHeart } from 'react-icons/io';
 import { GiSettingsKnobs } from 'react-icons/gi';
 import { createLike, deleteLike } from '../../actions/like_actions';
 import { createPlaylistSong, deletePlaylistSong } from '../../actions/playlist_song_actions';
-import SongDropdown from './song-dropdown';
 import { qPlayNow, qPauseSong, qPlaySong } from '../../actions/queue_actions';
+import SongDropdown from './song-dropdown';
 
 function Song(props) {
 
@@ -37,11 +37,7 @@ function Song(props) {
     }
 
     function isLiked() {
-        if (songIds.includes(song.id)) {
-            return true;
-        } else {
-            return false;
-        }
+        return songIds.includes(song.id)
     }
 
     function isPlaying() {

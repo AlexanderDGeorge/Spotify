@@ -1,25 +1,31 @@
 import React, { useEffect, useState, useRef } from 'react';
 import ReactPlayer from 'react-player';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { qNextSong, qPrevSong, qPlaySong, qPauseSong, qToggleRepeat, qToggleShuffle } from '../../actions/queue_actions';
-import { MdSkipPrevious, MdPlayCircleOutline, MdSkipNext, MdShuffle, MdRepeat, MdPauseCircleOutline } from 'react-icons/md';
+import { createLike, deleteLike } from '../../actions/like_actions';
+import { qNextSong, qPrevSong, qPlaySong, qPauseSong } from '../../actions/queue_actions';
+import { MdSkipPrevious, MdPlayCircleOutline, MdSkipNext, MdShuffle, MdRepeat, MdPauseCircleOutline, MdVolumeUp } from 'react-icons/md';
+import { IoMdHeartEmpty, IoMdHeart } from 'react-icons/io';
 import './player.css';
 
 function Player(props) {
 
-    const { queue, songs } = props;
+    const { queue, songs, likes } = props;
     const [url, setUrl] = useState(null);
     const [volume, setVolume] = useState(0.8);
     const [played, setPlayed] = useState(0);
-    const [loaded, setLoaded] = useState(0);
-    const [duration, setDuration] = useState(0);
+    const [duration, setDuration] = useState('0:00');
     const [seeking, setSeeking] = useState(false);
     const [shuffle, setShuffle] = useState(false);
     const [loop, setLoop] = useState(false);
     const player = useRef(null);
 
+    const songIds = [];
+    likes.forEach(like => {
+        songIds.push(like.song_id)
+    });
+
     useEffect(() => {
-        console.log('queue change')
         if (queue.songArray.length) setUrl(queue.songArray[queue.index].song_url)
     }, [queue])
 
@@ -57,25 +63,19 @@ function Player(props) {
 
     function handleSeekMouseUp(e) {
         setSeeking(false);
-        player.seekTo(parseFloat(e.target.value))
+        player.current.seekTo(parseFloat(e.target.value), 'seconds')
     }
 
     function handleProgress(val) {
-        // handleProgress = state => {
-        //     console.log('onProgress', state)
-        //     // We only want to update time slider if we are not currently seeking
-        //     if (!this.state.seeking) {
-        //       this.setState(state)
-        //     }
-        // }
-    }
-
-    function handleEnded() {
-        handleNext();
-    }
-
-    function handleDuration(dur) {
-        setDuration(dur)
+        let seconds = val.playedSeconds;
+        if (!seeking) {
+            let minutes = Math.floor(seconds / 60)
+            seconds = seconds - minutes;
+            seconds = Math.floor(seconds * 0.6);
+            let time = seconds < 10 ? `${minutes}:0${seconds}` : `${minutes}:${seconds}`;
+            setDuration(time);
+            setPlayed(val.played);
+        }
     }
 
     function handlePrev() {
@@ -90,31 +90,44 @@ function Player(props) {
         }
     }
 
+    function handleLike() {
+        if (songIds.includes(queue.songArray[queue.index].id)) {
+            let like = likes[songIds.indexOf(queue.songArray[queue.index].id)]
+            props.unlikeSong(like)
+        } else {
+            props.likeSong({ user_id: props.userId, song_id: queue.songArray[queue.index].id })
+        }
+    }
+
+    function isLiked() {
+        return songIds.includes(queue.songArray[queue.index].id)
+    }
+
     return (
         <div className="player">
             <ReactPlayer 
+                className='react-player'
                 width='0'
                 height='0'
                 ref={player}
-                className='react-player'
                 url={url}
                 playing={queue.playing}
                 loop={loop}
                 volume={volume}
-                onStart={() => console.log('onStart')}
                 onPlay={handlePlay}
                 onPause={handlePause}
-                onBuffer={() => console.log('onBuffer')}
-                onSeek={e => console.log('onSeek', e)}
-                onEnded={handleEnded}
-                onError={e => console.log('onError', e)}
+                onEnded={handleNext}
                 onProgress={handleProgress}
-                onDuration={handleDuration}
             />
-            <div className="info">
-                <span>{queue.songArray.length ? queue.songArray[queue.index].name : null}</span>
-                <span>{queue.songArray.length ? queue.songArray[queue.index].artist : null}</span>
-            </div>
+            {queue.songArray.length ? 
+                <div className="info">
+                    <p>
+                        {queue.songArray[queue.index].name}
+                        {isLiked() ? <IoMdHeart color="white" className="song-button" onClick={handleLike} /> : <IoMdHeartEmpty className="song-button" onClick={handleLike}/> } 
+                    </p>
+                    <Link to={"/artists/" + queue.songArray[queue.index].artist_id}>{queue.songArray[queue.index].artist}</Link>
+                </div> : null
+            }
             <div className="controls">
                 <MdShuffle className={shuffle ? "toggle-button" : "controls-svg"} onClick={handleToggleShuffle}/>
                 <MdSkipPrevious className="controls-svg" onClick={handlePrev}/>
@@ -126,16 +139,20 @@ function Player(props) {
                 <MdRepeat className={loop ? "toggle-button" : "controls-svg"} onClick={handleToggleLoop}/>
 
             </div>
-            {/* <div className="duration">
-                <input 
-                    type="range" min={0} max={1} step='any'
-                    value={played}
-                    onMouseDown={handleSeekMouseDown}
-                    onChange={handleSeekChange}
-                    onMouseUp={handleSeekMouseUp}
-                />
-            </div> */}
+            {queue.songArray.length ?
+                <div className="duration">
+                    {duration}
+                    <input 
+                        type="range" min={0} max={1} step='any'
+                        value={played}
+                        onMouseDown={handleSeekMouseDown}
+                        onChange={handleSeekChange}
+                        onMouseUp={handleSeekMouseUp}
+                    />
+                    {queue.songArray[queue.index].duration}
+                </div> : null}
             <div className="volume">
+                <MdVolumeUp className="controls-svg"/>
                 <input 
                     type="range" min={0} max={1} step='any'
                     value={volume}
@@ -149,6 +166,8 @@ function Player(props) {
 const mapState = state => ({
     queue: state.queue,
     songs: state.entities.songs,
+    likes: Object.values(state.entities.user.likes),
+    userId: state.entities.user.id,
 });
 
 const mapDispatch = dispatch => ({
@@ -156,8 +175,8 @@ const mapDispatch = dispatch => ({
     prevSong: () => dispatch(qPrevSong()),
     playSong: () => dispatch(qPlaySong()),
     pauseSong: () => dispatch(qPauseSong()),
-    toggleShuffle: () => dispatch(qToggleShuffle()),
-    toggleRepeat: () => dispatch(qToggleRepeat()),
+    likeSong: like => dispatch(createLike(like)),
+    unlikeSong: likeId => dispatch(deleteLike(likeId)),
 });
 
 export default connect(mapState, mapDispatch)(Player);

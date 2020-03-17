@@ -48,6 +48,15 @@ function Results(props) {
                 })}
             </div>
 
+            <h2>Songs</h2>
+            <div className="results-div">
+                {songResults.map(song => {
+                    return (
+                        <Link to={"albums/" + song.album_id}>{song.name}</Link>
+                    )
+                })}
+            </div>
+            
             <h2>Playlists</h2>
             <div className="results-div">
                 {playlistResults.map(playlist => {
@@ -57,14 +66,6 @@ function Results(props) {
                 })}
             </div>
 
-            <h2>Songs</h2>
-            <div className="results-div">
-                {songResults.map(song => {
-                    return (
-                        <Link to={"albums/" + song.album_id}>{song.name}</Link>
-                    )
-                })}
-            </div>
         </div>
     )
 }
