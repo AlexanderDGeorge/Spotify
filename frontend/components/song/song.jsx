@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchSong } from '../../actions/song_actions';
 import { connect } from 'react-redux';
@@ -9,9 +9,12 @@ import { createLike, deleteLike } from '../../actions/like_actions';
 import { createPlaylistSong, deletePlaylistSong } from '../../actions/playlist_song_actions';
 import { qPlayNow, qPauseSong, qPlaySong } from '../../actions/queue_actions';
 import SongDropdown from './song-dropdown';
+import Reward from 'react-rewards';
 
 function Song(props) {
 
+    const likeRef = useRef();
+    const playRef = useRef();
     const { likes, song, queue } = props;
     const [open, setOpen] = useState(false);
     const songIds = [];
@@ -24,15 +27,22 @@ function Song(props) {
             let like = likes[songIds.indexOf(song.id)]
             props.unlikeSong(like)
         } else {
-            props.likeSong({ user_id: props.userId, song_id: song.id })
+            props.likeSong({ user_id: props.userId, song_id: song.id });
+            likeRef.current.rewardMe();
         }
     }
 
     function handlePlay() {
         if (queue.songArray[queue.index] === song) {
-            queue.playing ? props.pauseSong() : props.playSong();
+            if (queue.playing) {
+                props.pauseSong();
+            } else {
+                props.playSong();
+                playRef.current.rewardMe()
+            }
         } else {
             props.playNow(song);
+            playRef.current.rewardMe();
         }
     }
 
@@ -46,11 +56,17 @@ function Song(props) {
 
     return (
         <div className="song">
-            {isPlaying() ? 
-                <MdPauseCircleOutline className="song-button" onClick={handlePlay} color="limegreen"/> :
-                <MdPlayCircleOutline className="song-button" onClick={handlePlay} />
-            }
-            {isLiked() ? <IoMdHeart color="white" className="song-button" onClick={handleLike} /> : <IoMdHeartEmpty className="song-button" onClick={handleLike}/> } 
+            <Reward ref={playRef} type="memphis">
+                {isPlaying() ? 
+                    <MdPauseCircleOutline className="song-button" onClick={handlePlay} color="limegreen"/> :
+                    <MdPlayCircleOutline className="song-button" onClick={handlePlay} />
+                }
+            </Reward>
+            <Reward ref={likeRef} type="emoji" config={{ emoji: ["❤️"], lifetime: 100, spread: 360, startVelocity: 10, elementCount: 8, springAnimation: false, }}>
+                {isLiked() ? 
+                    <IoMdHeart color="white" className="song-button" onClick={handleLike} /> : 
+                    <IoMdHeartEmpty className="song-button" onClick={handleLike}/> } 
+            </Reward>
             <p className="song-name">
                 {song.name}
             </p>

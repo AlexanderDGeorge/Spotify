@@ -14,6 +14,7 @@ function Home(props) {
                         <li>player volume</li>
                         <li>player loop</li>
                         <li>player seek</li>
+                        <li>play and like micro-interactions</li>
                     </ul><br/>
                 </div>
                 <div>
@@ -23,7 +24,6 @@ function Home(props) {
                         <li>playlist editing</li>
                         <li>account editing</li>
                         <li>react-spring animations</li>
-                        <li>micro-interactions</li>
                         <li>mobile-support</li>
                     </ul>
                 </div>
