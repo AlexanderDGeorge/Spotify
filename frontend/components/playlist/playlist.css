@@ -38,7 +38,7 @@
 .new-playlist form {
     width: 80%;
     height: 50%;
-    border-radius: 20px;
+    border-radius: 10px;
     padding: 20px;
     background: #333333;
     box-sizing: border-box;
@@ -65,6 +65,12 @@
     max-width: 100%;
     display: flex;
     justify-content: center;
+}
+
+.new-playlist-img img {
+    height: 100%;
+    max-width: 100%;
+    width: auto;
 }
 
 .new-playlist-img label {
