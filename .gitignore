@@ -30,5 +30,4 @@
 bundle.js
 bundle.js.map
 node_modules/
-aws.env
 .env

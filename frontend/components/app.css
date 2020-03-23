@@ -5,6 +5,11 @@
     font-family: sans-serif;
 }
 
+:root {
+    --green: #1DB954;
+    --hovergreen: #1ED760;
+}
+
 a {
     color: white;
     text-decoration: none;

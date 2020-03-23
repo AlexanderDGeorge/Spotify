@@ -73,3 +73,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "aws-sdk-s3", "~> 1.61"
 gem "dotenv-rails", "~> 2.7"
+
+gem "rack-cors", "~> 1.1"
