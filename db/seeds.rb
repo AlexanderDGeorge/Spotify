@@ -56,9 +56,9 @@ wys = Artist.create!({ name: 'WYS', img_url: 'https://spotlofi.s3-us-west-2.amaz
 amstudysession = Album.create!({ name: '1 Am. Study Session', year: 2019, artist_id: various.id, img_url: 'https://spotlofi.s3-us-west-2.amazonaws.com/images/1amstudysession.jpg' });
 cloudsurfing = Album.create!({ name: 'Cloud Surfing', year: 2020, artist_id: bluntone.id, img_url: 'https://spotlofi.s3-us-west-2.amazonaws.com/images/cloudsurfing.jpg' });
 laventureep = Album.create!({ name: "L'vanenture EP", year: 2020, artist_id: c4c.id, img_url: 'https://spotlofi.s3-us-west-2.amazonaws.com/images/laventureep.jpg' });
-persceptive = Album.create!({ name: 'Perspective', year: 2020, artist_id: chrismazuera.id });
-jirodreams = Album.create!({ name: 'Jiro Dreams', year: 2020, artist_id: dontcry.id });
-soundsandthings = Album.create!({ name: 'sounds and things', year: 2016, artist_id: jhfly.id });
+persceptive = Album.create!({ name: 'Perspective', year: 2020, artist_id: chrismazuera.id, img_url: 'https://spotlofi.s3-us-west-2.amazonaws.com/images/perspective.jpeg' });
+# jirodreams = Album.create!({ name: 'Jiro Dreams', year: 2020, artist_id: dontcry.id });
+# soundsandthings = Album.create!({ name: 'sounds and things', year: 2016, artist_id: jhfly.id });
 
 # Songs
 # 1 am study session 
@@ -104,3 +104,11 @@ laventure = Song.create!({ name: "L'aventure", duration: '2:41', artist_id: c4c.
 cherie = Song.create!({ name: "Chérie", duration: '3:27', artist_id: c4c.id, album_id: laventureep.id, song_url: 'https://spotlofi.s3-us-west-2.amazonaws.com/songs/Cherie.mp3' });
 adieu = Song.create!({ name: 'Adieu', duration: '2:14', artist_id: c4c.id, album_id: laventureep.id, song_url: 'https://spotlofi.s3-us-west-2.amazonaws.com/songs/Adieu.mp3' });
 drifter = Song.create!({ name: 'Drifter', duration: '2:10', artist_id: c4c.id, album_id: laventureep.id, song_url: 'https://spotlofi.s3-us-west-2.amazonaws.com/songs/Drifter.mp3' });
+
+#perspective 
+firstsnow = Song.create!({ name: 'First Snow', duration: '2:55', artist_id: chrismazuera.id, album_id: persceptive.id, song_url: 'https://spotlofi.s3-us-west-2.amazonaws.com/songs/First+Snow.mp3' });
+abundance = Song.create!({ name: 'Abundance', duration: '2:26', artist_id: chrismazuera.id, album_id: persceptive.id, song_url: 'https://spotlofi.s3-us-west-2.amazonaws.com/songs/Abundance.mp3' });
+givingnottaking = Song.create!({ name: 'Giving, Not Taking', duration: '3:04', artist_id: chrismazuera.id, album_id: persceptive.id, song_url: 'https://spotlofi.s3-us-west-2.amazonaws.com/songs/Giving%2C+Not+Taking.mp3' });
+winterskiss = Song.create!({ name: "Winter's Kiss", duration: '1:49', artist_id: chrismazuera.id, album_id: persceptive.id, song_url: "https://spotlofi.s3-us-west-2.amazonaws.com/songs/Winter's+Kiss.mp3" });
+staymindful = Song.create!({ name: 'Stay Mindful', duration: '2:17', artist_id: chrismazuera.id, album_id: persceptive.id, song_url: 'https://spotlofi.s3-us-west-2.amazonaws.com/songs/Stay+Mindful.mp3' });
+persceptives = Song.create!({ name: 'Perspective', duration: '2:52', artist_id: chrismazuera.id, album_id: persceptive.id, song_url: 'https://spotlofi.s3-us-west-2.amazonaws.com/songs/Perspective.mp3' });
