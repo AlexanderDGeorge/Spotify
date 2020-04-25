@@ -34,3 +34,7 @@
     font-weight: 300;
     font-size: 12px;
 }
+
+.active {
+    border-left: 1px solid lime;
+}
