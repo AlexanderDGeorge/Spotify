@@ -1,12 +1,27 @@
-.player {
-    background: #222222;
-    display: grid;
-    grid-template-columns: 200px auto 200px;
-    grid-template-rows: 80% 20%;
-    grid-template-areas: 
-        "info controls volume"
-        "info duration volume";
+@media screen and (max-width: 500px) {
+    .player {
+        background: #222222;
+        display: grid;
+        grid-template-columns: 0 auto 0;
+        grid-template-rows: 80% 20%;
+        grid-template-areas: 
+            "info controls volume"
+            "info duration volume";
+    }
 }
+
+@media screen and (min-width: 500px) {
+    .player {
+        background: #222222;
+        display: grid;
+        grid-template-columns: 200px auto 200px;
+        grid-template-rows: 80% 20%;
+        grid-template-areas: 
+            "info controls volume"
+            "info duration volume";
+    }
+}
+
 
 .info {
     grid-area: info;
@@ -96,5 +111,5 @@
     height: 20px;
     width: auto;
     padding: 10px;
-    color: limegreen;
+    color: var(--green);
 }

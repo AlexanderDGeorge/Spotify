@@ -28,6 +28,13 @@ function Results(props) {
         }
     }
 
+    function shortenName(name) {
+        if (name.length > 20) {
+            name = name.slice(0, 16) + '...';
+        }
+        return name;
+    }
+
     return (
         <div className="results">
             <h2>Albums</h2>
@@ -42,6 +49,7 @@ function Results(props) {
             <h2>Artists</h2>
             <div className="results-div">
                 {artistResults.map(artist => {
+
                     return (
                         <Link to={"artists/" + artist.id}>{artist.name}</Link>
                     )
@@ -52,7 +60,7 @@ function Results(props) {
             <div className="results-div">
                 {songResults.map(song => {
                     return (
-                        <Link to={"albums/" + song.album_id}>{song.name}</Link>
+                        <Link to={"albums/" + song.album_id}>{shortenName(song.name)}</Link>
                     )
                 })}
             </div>

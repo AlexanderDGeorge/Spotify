@@ -14,13 +14,13 @@
 }
 
 .header-img {
-    width: 40%;
     height: 100%;
+    max-width: 40%;
 }
 
 .header-img img {
     height: 100%;
-    width: auto;
+    max-width: 100%;
 }   
 
 .content-info {

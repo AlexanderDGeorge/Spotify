@@ -2,21 +2,32 @@ import React, { useState } from 'react';
 import { createPlaylist } from '../../actions/playlist_actions';
 import { connect } from 'react-redux';
 import { FiMusic } from 'react-icons/fi';
+import Errors from '../errors/errors';
 import 'babel-polyfill';
 
 function NewPlaylist(props) {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [imageUrl, setImageUrl] = useState("");
+    const [error, setError] = useState("");
+    const [open, setOpen] = useState(false);
     
     function handleSubmit() {
         props.createPlaylist({ user_id: props.user.id, name, description, img_url: imageUrl })
-        props.history.push("/")
+            .then(data => {
+                props.history.push(`/playlists/${data.playlist.id}`)
+            })
     }
 
     async function handleUpload(e) {
         const file = e.target.files[0];
         if (!file) return;
+        if (file.size > 3000000) {
+            console.log("here")
+            setError("Max file size is 3MB");
+            setOpen(true);
+            return;
+        }
         
         const payload = await fetch(`http://localhost:3000/s3/direct_post`)
             .then(res => res.json()
@@ -40,6 +51,7 @@ function NewPlaylist(props) {
             .getElementsByTagName('Location')[0].textContent;
     
         setImageUrl(uploadUrl);
+        console.log(imageUrl)
     }
 
     return (
@@ -60,6 +72,7 @@ function NewPlaylist(props) {
                     <input 
                         id="image-upload"
                         type="file"
+                        accept="image/*"
                         onChange={handleUpload}
                     />
                 </div>}
@@ -85,6 +98,7 @@ function NewPlaylist(props) {
                     </button>
                 </footer>
             </form>
+            {open ? <Errors error={error} setOpen={val => setOpen(val)}/> : null}
         </div>
     )
 
