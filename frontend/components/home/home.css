@@ -9,7 +9,7 @@
     width: 100%;
     padding: 40px 0 10px 10px;
     font-size: 30px;
-    font-weight: 300;
+    font-weight: 700;
     border-bottom: 1px solid #333;
 }
 
@@ -20,16 +20,16 @@
 }
 
 .album-card {
-    width: 200px;
-    height: 300px;
+    width: 250px;
+    height: 350px;
     display: inline-flex;
     flex-direction: column;
     margin: 10px;
 }
 
 .album-card img {
-    width: 200px;
-    height: 200px;
+    width: 250px;
+    height: 250px;
 }
 
 .album-card a {

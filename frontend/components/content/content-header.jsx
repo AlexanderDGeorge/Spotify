@@ -8,7 +8,7 @@ import { qAddSongs } from '../../actions/queue_actions';
 
 function ContentHeader(props) {    
 
-    const { content, songs } = props
+    const { content, songs, type } = props
 
     function handleDelete() {
         props.deletePlaylist(content.id);
@@ -26,15 +26,16 @@ function ContentHeader(props) {
         return (
             <div className="content-header">
                 <div className="header-img">
-                    {content.img_url ? <img src={content.img_url} /> : <img src={window.defaultCover} />}
+                    {content.img_url ? <img src={content.img_url} className={`${type}-cover`} /> : <img src={window.defaultCover} />}
+                    {/* <img src={content.img_url} alt={window.defaultCover} /> */}
                 </div>
                 <div className="content-info">
-                    {props.type === 'liked' ? null : <h4>{props.type.toUpperCase()}</h4>}
+                    {type === 'liked' ? null : <h4>{type.toUpperCase()}</h4>}
                     <h2>{content.name}</h2>
-                    {props.type === 'liked' || props.type === 'artist' ? null : props.type === 'playlist' ? <h4>by {content.user.username}</h4> : <h4>by {content.artist}</h4>}
+                    {type === 'liked' || type === 'artist' ? null : type === 'playlist' ? <h4>by {content.user.username}</h4> : <h4>by {content.artist}</h4>}
                     <div className="content-buttons">
                         <button className="content-play" onClick={handlePlayContent}>Play</button>
-                        {props.type === 'playlist' ? <button className="content-delete" onClick={handleDelete}> <TiDeleteOutline /> </button> : null}
+                        {type === 'playlist' ? <button className="content-delete" onClick={handleDelete}> <TiDeleteOutline /> </button> : null}
                     </div>
                 </div>
             </div>

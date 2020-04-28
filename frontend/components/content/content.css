@@ -5,17 +5,16 @@
 
 .content-header {
     width: 100%;
-    height: 40%;
+    height: 250px;
     display: flex;
-    justify-content: center;
     align-items: center;
     border-bottom: 1px solid #333333;
     background: linear-gradient(180deg, #444444, #1d1d1d);
 }
 
 .header-img {
-    height: 100%;
-    max-width: 40%;
+    height: 250px;
+    width: 250px;
 }
 
 .header-img img {
@@ -72,4 +71,8 @@
     width: auto;
     color: white;
     cursor: pointer;
+}
+
+.artist-cover {
+    border-radius: 50%;
 }
