@@ -24,7 +24,7 @@ function Home(props) {
                             <span className='album-card' key={album.id}>
                                 <img src={album.img_url} />
                                 <Link to={`albums/${album.id}`}>{album.name}</Link>
-                                <Link to={`artists/${album.artistId}`}>{album.artist}</Link>
+                                <Link to={album.artistId === 1 ? null : `artists/${album.artistId}`}>{album.artist}</Link>
                             </span>
                         ))}
                     </div>

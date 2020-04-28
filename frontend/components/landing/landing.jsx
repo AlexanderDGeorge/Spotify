@@ -2,11 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import TopBar from '../topbar/topbar';
 import Nav from '../nav/nav';
+import Cover from '../cover/cover';
 import Content from '../content/content';
 import Player from '../player/player';
 import { login } from '../../actions/session_actions';
 import { FaGithub, FaLinkedinIn, FaAngellist, FaAddressCard } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
 import './landing.css'
 
 function Landing(props) {
@@ -15,6 +15,7 @@ function Landing(props) {
         return (
             <div className="main">
                 <Nav />
+                <Cover />
                 <Content />
                 <Player />
             </div>
