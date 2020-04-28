@@ -4,10 +4,6 @@
     width: 100%;
 }
 
-.recommended {
-    overflow-y: scroll;
-}
-
 .recommended h2 {
     color: white;
     width: 100%;
@@ -17,7 +13,21 @@
     border-bottom: 1px solid #333;
 }
 
-.album-cover {
-    width: 100px;
-    height: auto;
+.recommended-cards {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-y: scroll;
+}
+
+.album-card {
+    width: 200px;
+    height: 300px;
+    display: inline-flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+.album-card img {
+    width: 200px;
+    height: 200px;
 }

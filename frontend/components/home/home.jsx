@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { fetchAlbums } from '../../actions/album_actions';
 import User from '../user/user';
 import './home.css';
@@ -16,13 +17,16 @@ function Home(props) {
         return(
             <div className="home">
                 <User />
-                <div>
-                    <div className='recommended'>
-                        <h2>Recommended</h2>
-                        {albums.map(album => {
-                            console.log(album)
-                            return <img src={album.img_url} className="album-cover"/>
-                        })}
+                <div className='recommended'>
+                    <h2>Recommended</h2>
+                    <div className='recommended-cards'>
+                        {albums.map(album => (
+                            <span className='album-card'>
+                                <img src={album.img_url} />
+                                <Link>{album.name}</Link>
+                                <Link>{album.artist}</Link>
+                            </span>
+                        ))}
                     </div>
                 </div>
             </div>
