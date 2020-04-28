@@ -31,3 +31,11 @@
     width: 200px;
     height: 200px;
 }
+
+.album-card a {
+    padding: 10px 10px 0 10px;
+}
+
+.album-card a:hover {
+    text-decoration: underline;
+}

@@ -21,10 +21,10 @@ function Home(props) {
                     <h2>Recommended</h2>
                     <div className='recommended-cards'>
                         {albums.map(album => (
-                            <span className='album-card'>
+                            <span className='album-card' key={album.id}>
                                 <img src={album.img_url} />
-                                <Link>{album.name}</Link>
-                                <Link>{album.artist}</Link>
+                                <Link to={`albums/${album.id}`}>{album.name}</Link>
+                                <Link to={`artists/${album.artistId}`}>{album.artist}</Link>
                             </span>
                         ))}
                     </div>
