@@ -1,35 +1,43 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { fetchAlbums } from '../../actions/album_actions';
 import User from '../user/user';
 import './home.css';
 
 function Home(props) {
-    return(
-        <div className="home">
-            <User />
-            <article className="patch-notes">
-                <h3>Welcome to spotlofi!</h3><br/>
+
+    const { albums } = props;
+
+    useEffect(() => {
+        props.fetchAlbums();
+    }, [])
+
+    if (albums.length) {
+        return(
+            <div className="home">
+                <User />
                 <div>
-                    <p>New Features:</p>
-                    <ul>
-                        <li>player volume</li>
-                        <li>player loop</li>
-                        <li>player seek</li>
-                        <li>play and like micro-interactions</li>
-                    </ul><br/>
+                    <div className='recommended'>
+                        <h2>Recommended</h2>
+                        {albums.map(album => {
+                            console.log(album)
+                            return <img src={album.img_url} className="album-cover"/>
+                        })}
+                    </div>
                 </div>
-                <div>
-                    <p>Features Coming Soon:</p>
-                    <ul>
-                        <li>player shuffle</li>
-                        <li>playlist editing</li>
-                        <li>account editing</li>
-                        <li>react-spring animations</li>
-                        <li>mobile-support</li>
-                    </ul>
-                </div>
-            </article>
-        </div>
-    )
+            </div>
+        )
+    } else {
+        return null;
+    }
 }
 
-export default Home;
+const mapState = state => ({
+    albums: Object.values(state.entities.albums),
+})
+
+const mapDispatch = dispatch => ({
+    fetchAlbums: () => dispatch(fetchAlbums()),
+})
+
+export default connect(mapState, mapDispatch)(Home);
