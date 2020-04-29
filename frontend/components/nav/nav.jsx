@@ -33,9 +33,13 @@ function Nav(props) {
                 Create Playlist
             </Link>
             <h4>PLAYLISTS</h4>
-            { props.playlists.map(playlist => {
+            { props.playlists.map((playlist, i) => {
                 return (
-                    <Link className="playlist-link" to={'/playlists/' + playlist.id} key={playlist.id}>
+                    <Link 
+                        className={active === 4 + i ? "active plink" : "plink"} 
+                        onClick={() => setActive(4 + i)}
+                        to={'/playlists/' + playlist.id} 
+                        key={playlist.id}>
                         { playlist.name }
                     </Link>
                 )
