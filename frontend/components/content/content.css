@@ -8,6 +8,7 @@
     height: 250px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     border-bottom: 1px solid #333333;
     background: linear-gradient(180deg, #444444, #1d1d1d);
 }

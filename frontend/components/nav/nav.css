@@ -1,5 +1,9 @@
 .nav {
     background: #111111;
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
 .nav-links {
@@ -8,7 +12,7 @@
     justify-content: space-evenly;
 }
 
-.nav-links a {
+.nav a {
     width: 100%;
     height: 50px;
     display: flex;
@@ -16,17 +20,17 @@
     color: #999999;
 }
 
-.nav-links a:hover {
+.nav a:hover {
     color: white;
 }
 
-.nav-links a svg {
+.nav a svg {
     width: 20px;
     height: auto;
     padding: 20px;
 }
 
-.nav-links h4 {
+.nav h4 {
     width: 100%;
     text-align: center;
     color: #aaaaaa;
