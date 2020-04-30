@@ -28,6 +28,26 @@ function Home(props) {
                             </div>
                         ))}
                     </div>
+                    <h2>For You</h2>
+                    <div className='recommended-cards'>
+                        {albums.map(album => (
+                            <div className='album-card' key={album.id}>
+                                <img src={album.img_url} />
+                                <Link to={`albums/${album.id}`}>{album.name}</Link>
+                                <Link to={`artists/${album.artistId}`}>{album.artist}</Link>
+                            </div>
+                        ))}
+                    </div>
+                    <h2>Most Played</h2>
+                    <div className='recommended-cards'>
+                        {albums.map(album => (
+                            <div className='album-card' key={album.id}>
+                                <img src={album.img_url} />
+                                <Link to={`albums/${album.id}`}>{album.name}</Link>
+                                <Link to={`artists/${album.artistId}`}>{album.artist}</Link>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         )

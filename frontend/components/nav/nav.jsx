@@ -3,7 +3,6 @@ import { FaHome, FaSearch, FaPlusSquare, FaHeart } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchPlaylists } from '../../actions/playlist_actions';
-
 import './nav.css'
 
 function Nav(props) {
